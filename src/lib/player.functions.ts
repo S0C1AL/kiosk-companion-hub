@@ -29,8 +29,10 @@ export const getPlayerInfo = createServerFn({ method: "GET" })
     if (!res.ok) {
       throw new Error(`Player API ${res.status}`);
     }
-    const json = (await res.json()) as PlayerInfo[];
-    return Array.isArray(json) && json.length > 0 ? json[0] : null;
+    const json = (await res.json()) as unknown;
+    const player = pickPlayer(json);
+    if (!player) console.warn("[getPlayerInfo] unrecognised shape:", JSON.stringify(json).slice(0, 500));
+    return player;
   });
 
 export const getPlayerBalance = createServerFn({ method: "GET" })
@@ -44,8 +46,8 @@ export const getPlayerBalance = createServerFn({ method: "GET" })
     if (!res.ok) {
       throw new Error(`Balance API ${res.status}`);
     }
-    const json = (await res.json()) as PlayerBalance[];
-    return Array.isArray(json) && json.length > 0 ? json[0] : null;
+    const json = (await res.json()) as unknown;
+    return pickFirst<PlayerBalance>(json);
   });
 
 export const excludePlayer48h = createServerFn({ method: "POST" })
