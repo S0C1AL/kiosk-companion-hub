@@ -1,43 +1,37 @@
 import { useEffect } from "react";
 
 /**
- * Listens for ACR122 keyboard-wedge input.
- * Buffers hex characters until Enter, converts hex -> decimal,
- * and calls onCard(decimal).
- *
- * Reader format assumed: uppercase or lowercase hex chars + Enter.
- * Example: "293A6C3B\n" -> 691694651
+ * Listens for card insert/remove events streamed by the kiosk PC/SC bridge
+ * (see scripts/kiosk-card-bridge.py) over Server-Sent Events at
+ * /api/card/stream. The bridge POSTs to /api/public/card-event whenever a
+ * card is presented or removed at the ACR122 reader.
  */
-export function CardReaderListener({ onCard }: { onCard: (cardDecimal: number) => void }) {
+export function CardReaderListener({
+  onCard,
+  onRemove,
+}: {
+  onCard: (cardDecimal: number) => void;
+  onRemove?: () => void;
+}) {
   useEffect(() => {
-    let buffer = "";
-    let lastKeyTs = 0;
-    const handler = (e: KeyboardEvent) => {
-      const now = performance.now();
-      // Reset buffer if more than 500ms between keystrokes (manual typing safeguard)
-      if (now - lastKeyTs > 500) buffer = "";
-      lastKeyTs = now;
-
-      if (e.key === "Enter") {
-        const hex = buffer.trim();
-        buffer = "";
-        if (hex.length >= 6 && /^[0-9A-Fa-f]+$/.test(hex)) {
-          const dec = parseInt(hex, 16);
-          if (Number.isFinite(dec) && dec > 0) {
-            e.preventDefault();
-            onCard(dec);
-          }
+    if (typeof window === "undefined" || typeof EventSource === "undefined") return;
+    const es = new EventSource("/api/card/stream");
+    es.onmessage = (msg) => {
+      try {
+        const ev = JSON.parse(msg.data) as
+          | { type: "insert"; cardNo: number }
+          | { type: "remove" };
+        if (ev.type === "insert" && Number.isFinite(ev.cardNo) && ev.cardNo > 0) {
+          onCard(ev.cardNo);
+        } else if (ev.type === "remove") {
+          onRemove?.();
         }
-        return;
-      }
-      if (e.key.length === 1 && /[0-9A-Fa-f]/.test(e.key)) {
-        buffer += e.key;
-        if (buffer.length > 32) buffer = buffer.slice(-32);
+      } catch {
+        /* ignore malformed event */
       }
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [onCard]);
+    return () => es.close();
+  }, [onCard, onRemove]);
 
   return null;
 }

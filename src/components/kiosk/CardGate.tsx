@@ -82,6 +82,15 @@ export function CardGate({ children }: Props) {
     }
   };
 
+  const endSession = () => {
+    setCardNo(null);
+    setDobDigits("");
+    setTries(0);
+    setVerified(false);
+    // Always send the user back to the home screen on card removal.
+    navigate({ to: "/" });
+  };
+
   if (verified && player) return <>{children(player)}</>;
 
   return (
@@ -90,6 +99,7 @@ export function CardGate({ children }: Props) {
         onCard={(dec) => {
           if (cardNo === null) setCardNo(dec);
         }}
+        onRemove={endSession}
       />
 
       {cardNo === null && (

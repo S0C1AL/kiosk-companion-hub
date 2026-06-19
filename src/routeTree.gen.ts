@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayerInfoIndexRouteImport } from './routes/player-info.index'
 import { Route as PanicButtonIndexRouteImport } from './routes/panic-button.index'
 import { Route as GamePlanIndexRouteImport } from './routes/game-plan.index'
+import { Route as GamePlansSplatRouteImport } from './routes/game-plans.$'
 import { Route as GamePlanTypeRouteImport } from './routes/game-plan.$type'
+import { Route as ApiPublicCardEventRouteImport } from './routes/api/public/card-event'
+import { Route as ApiCardStreamRouteImport } from './routes/api/card.stream'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,59 +38,100 @@ const GamePlanIndexRoute = GamePlanIndexRouteImport.update({
   path: '/game-plan/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamePlansSplatRoute = GamePlansSplatRouteImport.update({
+  id: '/game-plans/$',
+  path: '/game-plans/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GamePlanTypeRoute = GamePlanTypeRouteImport.update({
   id: '/game-plan/$type',
   path: '/game-plan/$type',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCardEventRoute = ApiPublicCardEventRouteImport.update({
+  id: '/api/public/card-event',
+  path: '/api/public/card-event',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCardStreamRoute = ApiCardStreamRouteImport.update({
+  id: '/api/card/stream',
+  path: '/api/card/stream',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
+  '/game-plans/$': typeof GamePlansSplatRoute
   '/game-plan/': typeof GamePlanIndexRoute
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
+  '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
+  '/game-plans/$': typeof GamePlansSplatRoute
   '/game-plan': typeof GamePlanIndexRoute
   '/panic-button': typeof PanicButtonIndexRoute
   '/player-info': typeof PlayerInfoIndexRoute
+  '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
+  '/game-plans/$': typeof GamePlansSplatRoute
   '/game-plan/': typeof GamePlanIndexRoute
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
+  '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/game-plan/$type'
+    | '/game-plans/$'
     | '/game-plan/'
     | '/panic-button/'
     | '/player-info/'
+    | '/api/card/stream'
+    | '/api/public/card-event'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/game-plan/$type' | '/game-plan' | '/panic-button' | '/player-info'
+  to:
+    | '/'
+    | '/game-plan/$type'
+    | '/game-plans/$'
+    | '/game-plan'
+    | '/panic-button'
+    | '/player-info'
+    | '/api/card/stream'
+    | '/api/public/card-event'
   id:
     | '__root__'
     | '/'
     | '/game-plan/$type'
+    | '/game-plans/$'
     | '/game-plan/'
     | '/panic-button/'
     | '/player-info/'
+    | '/api/card/stream'
+    | '/api/public/card-event'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GamePlanTypeRoute: typeof GamePlanTypeRoute
+  GamePlansSplatRoute: typeof GamePlansSplatRoute
   GamePlanIndexRoute: typeof GamePlanIndexRoute
   PanicButtonIndexRoute: typeof PanicButtonIndexRoute
   PlayerInfoIndexRoute: typeof PlayerInfoIndexRoute
+  ApiCardStreamRoute: typeof ApiCardStreamRoute
+  ApiPublicCardEventRoute: typeof ApiPublicCardEventRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -120,11 +164,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamePlanIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game-plans/$': {
+      id: '/game-plans/$'
+      path: '/game-plans/$'
+      fullPath: '/game-plans/$'
+      preLoaderRoute: typeof GamePlansSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/game-plan/$type': {
       id: '/game-plan/$type'
       path: '/game-plan/$type'
       fullPath: '/game-plan/$type'
       preLoaderRoute: typeof GamePlanTypeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/card-event': {
+      id: '/api/public/card-event'
+      path: '/api/public/card-event'
+      fullPath: '/api/public/card-event'
+      preLoaderRoute: typeof ApiPublicCardEventRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/card/stream': {
+      id: '/api/card/stream'
+      path: '/api/card/stream'
+      fullPath: '/api/card/stream'
+      preLoaderRoute: typeof ApiCardStreamRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -133,9 +198,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamePlanTypeRoute: GamePlanTypeRoute,
+  GamePlansSplatRoute: GamePlansSplatRoute,
   GamePlanIndexRoute: GamePlanIndexRoute,
   PanicButtonIndexRoute: PanicButtonIndexRoute,
   PlayerInfoIndexRoute: PlayerInfoIndexRoute,
+  ApiCardStreamRoute: ApiCardStreamRoute,
+  ApiPublicCardEventRoute: ApiPublicCardEventRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
