@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PanicButtonIndexRouteImport } from './routes/panic-button.index'
 import { Route as GamePlanIndexRouteImport } from './routes/game-plan.index'
 import { Route as GamePlanTypeRouteImport } from './routes/game-plan.$type'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanicButtonIndexRoute = PanicButtonIndexRouteImport.update({
+  id: '/panic-button/',
+  path: '/panic-button/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamePlanIndexRoute = GamePlanIndexRouteImport.update({
@@ -33,30 +39,34 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
   '/game-plan/': typeof GamePlanIndexRoute
+  '/panic-button/': typeof PanicButtonIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
   '/game-plan': typeof GamePlanIndexRoute
+  '/panic-button': typeof PanicButtonIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
   '/game-plan/': typeof GamePlanIndexRoute
+  '/panic-button/': typeof PanicButtonIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/game-plan/$type' | '/game-plan/'
+  fullPaths: '/' | '/game-plan/$type' | '/game-plan/' | '/panic-button/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/game-plan/$type' | '/game-plan'
-  id: '__root__' | '/' | '/game-plan/$type' | '/game-plan/'
+  to: '/' | '/game-plan/$type' | '/game-plan' | '/panic-button'
+  id: '__root__' | '/' | '/game-plan/$type' | '/game-plan/' | '/panic-button/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GamePlanTypeRoute: typeof GamePlanTypeRoute
   GamePlanIndexRoute: typeof GamePlanIndexRoute
+  PanicButtonIndexRoute: typeof PanicButtonIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panic-button/': {
+      id: '/panic-button/'
+      path: '/panic-button'
+      fullPath: '/panic-button/'
+      preLoaderRoute: typeof PanicButtonIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/game-plan/': {
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamePlanTypeRoute: GamePlanTypeRoute,
   GamePlanIndexRoute: GamePlanIndexRoute,
+  PanicButtonIndexRoute: PanicButtonIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
