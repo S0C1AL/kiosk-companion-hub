@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GamePlanIndexRouteImport } from './routes/game-plan.index'
+import { Route as GamePlanTypeRouteImport } from './routes/game-plan.$type'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const GamePlanIndexRoute = GamePlanIndexRouteImport.update({
   path: '/game-plan/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamePlanTypeRoute = GamePlanTypeRouteImport.update({
+  id: '/game-plan/$type',
+  path: '/game-plan/$type',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/game-plan/$type': typeof GamePlanTypeRoute
   '/game-plan/': typeof GamePlanIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/game-plan/$type': typeof GamePlanTypeRoute
   '/game-plan': typeof GamePlanIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/game-plan/$type': typeof GamePlanTypeRoute
   '/game-plan/': typeof GamePlanIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/game-plan/'
+  fullPaths: '/' | '/game-plan/$type' | '/game-plan/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/game-plan'
-  id: '__root__' | '/' | '/game-plan/'
+  to: '/' | '/game-plan/$type' | '/game-plan'
+  id: '__root__' | '/' | '/game-plan/$type' | '/game-plan/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GamePlanTypeRoute: typeof GamePlanTypeRoute
   GamePlanIndexRoute: typeof GamePlanIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamePlanIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game-plan/$type': {
+      id: '/game-plan/$type'
+      path: '/game-plan/$type'
+      fullPath: '/game-plan/$type'
+      preLoaderRoute: typeof GamePlanTypeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GamePlanTypeRoute: GamePlanTypeRoute,
   GamePlanIndexRoute: GamePlanIndexRoute,
 }
 export const routeTree = rootRouteImport
