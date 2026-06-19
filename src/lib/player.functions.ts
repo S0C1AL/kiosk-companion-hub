@@ -11,6 +11,29 @@ async function getConfig() {
   return readKioskConfig();
 }
 
+function pickFirst<T>(json: unknown): T | null {
+  if (json == null) return null;
+  if (Array.isArray(json)) return (json.length > 0 ? (json[0] as T) : null);
+  if (typeof json === "object") {
+    const obj = json as Record<string, unknown>;
+    for (const key of ["data", "result", "results", "items", "rows", "value"]) {
+      if (key in obj) {
+        const inner = pickFirst<T>(obj[key]);
+        if (inner) return inner;
+      }
+    }
+    return obj as T;
+  }
+  return null;
+}
+
+function pickPlayer(json: unknown): PlayerInfo | null {
+  const p = pickFirst<PlayerInfo>(json);
+  if (!p) return null;
+  // Sanity: a real player has at least a playerId
+  return (p as { playerId?: unknown }).playerId ? p : null;
+}
+
 export const getKioskClientConfig = createServerFn({ method: "GET" }).handler(
   async (): Promise<KioskClientConfig> => {
     const cfg = await getConfig();
