@@ -1,0 +1,16 @@
+[Unit]
+Description=Kiosk PC/SC -> HTTP card bridge
+After=pcscd.service network-online.target kiosk-app.service
+Wants=pcscd.service network-online.target
+
+[Service]
+Type=simple
+User=jkriha
+Environment=KIOSK_APP_URL=http://127.0.0.1:3000
+# Environment=KIOSK_BRIDGE_SECRET=change-me   # uncomment + match in kiosk-app
+ExecStart=/usr/bin/python3 /home/jkriha/kiosk-app/scripts/kiosk-card-bridge.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

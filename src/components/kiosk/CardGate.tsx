@@ -82,7 +82,23 @@ export function CardGate({ children }: Props) {
     }
   };
 
-  if (verified && player) return <>{children(player)}</>;
+  const endSession = () => {
+    setCardNo(null);
+    setDobDigits("");
+    setTries(0);
+    setVerified(false);
+    // Always send the user back to the home screen on card removal.
+    navigate({ to: "/" });
+  };
+
+  if (verified && player) {
+    return (
+      <>
+        <CardReaderListener onCard={() => {}} onRemove={endSession} />
+        {children(player)}
+      </>
+    );
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center px-6 py-10 text-center">
@@ -90,6 +106,7 @@ export function CardGate({ children }: Props) {
         onCard={(dec) => {
           if (cardNo === null) setCardNo(dec);
         }}
+        onRemove={endSession}
       />
 
       {cardNo === null && (
