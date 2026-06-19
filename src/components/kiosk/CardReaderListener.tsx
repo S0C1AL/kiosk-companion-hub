@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Listens for card insert/remove events streamed by the kiosk PC/SC bridge
@@ -15,6 +15,7 @@ export function CardReaderListener({
 }) {
   useEffect(() => {
     if (typeof window === "undefined" || typeof EventSource === "undefined") return;
+    let sawInsert = false;
     const es = new EventSource("/api/card/stream");
     es.onmessage = (msg) => {
       try {
@@ -22,8 +23,10 @@ export function CardReaderListener({
           | { type: "insert"; cardNo: number }
           | { type: "remove" };
         if (ev.type === "insert" && Number.isFinite(ev.cardNo) && ev.cardNo > 0) {
+          sawInsert = true;
           onCard(ev.cardNo);
-        } else if (ev.type === "remove") {
+        } else if (ev.type === "remove" && sawInsert) {
+          sawInsert = false;
           onRemove?.();
         }
       } catch {
