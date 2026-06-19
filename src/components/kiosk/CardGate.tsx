@@ -91,7 +91,14 @@ export function CardGate({ children }: Props) {
     navigate({ to: "/" });
   };
 
-  if (verified && player) return <>{children(player)}</>;
+  if (verified && player) {
+    return (
+      <>
+        <CardReaderListener onCard={() => {}} onRemove={endSession} />
+        {children(player)}
+      </>
+    );
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center px-6 py-10 text-center">
