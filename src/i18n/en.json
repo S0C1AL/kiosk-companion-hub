@@ -1,0 +1,95 @@
+{
+  "common": {
+    "home": "Home",
+    "back": "Back",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "tryAgain": "Try again",
+    "howTo": "How to",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "language": {
+    "label": "Language",
+    "cz": "Čeština",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "home": {
+    "title": "Welcome",
+    "subtitle": "Choose a service",
+    "tiles": {
+      "gamePlan": "Game Plan",
+      "gamePlanDesc": "Rules and game descriptions",
+      "panicButton": "Self-Exclusion",
+      "panicButtonDesc": "48 hours or permanent",
+      "playerInfo": "Player Info",
+      "playerInfoDesc": "Account and balance",
+      "comingSoon": "Coming Soon",
+      "comingSoonDesc": "More features on the way"
+    }
+  },
+  "gamePlan": {
+    "title": "Game Plan",
+    "technical": "Technical Games",
+    "technicalDesc": "Slot machines",
+    "live": "Live Games",
+    "liveDesc": "Roulette, cards, dice",
+    "missingPdf": "The game plan for this language is not available yet."
+  },
+  "card": {
+    "insertTitle": "Insert your card",
+    "insertSubtitle": "Place your player card on the reader to continue",
+    "reading": "Reading card…",
+    "notFound": "Card not found. Please try again.",
+    "scanAgain": "Scan again"
+  },
+  "dob": {
+    "title": "Identity verification",
+    "subtitle": "Enter your date of birth",
+    "format": "DD.MM.YYYY",
+    "verify": "Verify",
+    "wrong": "Date of birth doesn't match. Attempts: {{tries}}/3",
+    "tooManyTries": "Too many attempts. Returning to home screen."
+  },
+  "panic": {
+    "title": "Self-Exclusion",
+    "summary": "Player summary",
+    "exclude48": "48-hour exclusion",
+    "exclude48Desc": "You will not be allowed to play for 48 hours.",
+    "excludePerm": "Permanent exclusion",
+    "excludePermDesc": "Permanent exclusion from all our casinos.",
+    "sendMail": "Send confirmation by email",
+    "confirm48Title": "Confirm 48-hour exclusion",
+    "confirmPermTitle": "Confirm permanent exclusion",
+    "confirmText": "This action cannot be undone. Are you sure?",
+    "success": "Your request has been submitted successfully.",
+    "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. Choose 48-hour or permanent exclusion.\n4. Confirm. Our staff will contact you if needed."
+  },
+  "playerInfo": {
+    "title": "Player Info",
+    "personal": "Personal details",
+    "balance": "Card balance",
+    "cardCash": "Cash",
+    "cardNonCash": "Bonus",
+    "cardPoints": "Points",
+    "name": "Name",
+    "dob": "Date of birth",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "cardLevel": "Card level",
+    "lastVisit": "Last visit",
+    "visits": "Visits",
+    "visitsWeek": "This week",
+    "visitsMonth": "This month",
+    "visitsYear": "This year",
+    "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. View your personal details and card balance."
+  },
+  "idle": {
+    "returning": "Returning to home screen…"
+  }
+}

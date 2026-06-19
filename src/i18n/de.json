@@ -1,0 +1,95 @@
+{
+  "common": {
+    "home": "Startseite",
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "loading": "Laden…",
+    "error": "Etwas ist schiefgelaufen",
+    "tryAgain": "Erneut versuchen",
+    "howTo": "Anleitung",
+    "close": "Schließen",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "language": {
+    "label": "Sprache",
+    "cz": "Čeština",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "home": {
+    "title": "Willkommen",
+    "subtitle": "Wählen Sie einen Service",
+    "tiles": {
+      "gamePlan": "Spielplan",
+      "gamePlanDesc": "Regeln und Spielbeschreibungen",
+      "panicButton": "Selbstsperre",
+      "panicButtonDesc": "48 Stunden oder dauerhaft",
+      "playerInfo": "Spielerinfo",
+      "playerInfoDesc": "Konto und Guthaben",
+      "comingSoon": "Demnächst",
+      "comingSoonDesc": "Weitere Funktionen folgen"
+    }
+  },
+  "gamePlan": {
+    "title": "Spielplan",
+    "technical": "Technische Spiele",
+    "technicalDesc": "Spielautomaten",
+    "live": "Live-Spiele",
+    "liveDesc": "Roulette, Karten, Würfel",
+    "missingPdf": "Der Spielplan für diese Sprache ist noch nicht verfügbar."
+  },
+  "card": {
+    "insertTitle": "Karte einlegen",
+    "insertSubtitle": "Halten Sie Ihre Spielerkarte an den Leser, um fortzufahren",
+    "reading": "Karte wird gelesen…",
+    "notFound": "Karte nicht gefunden. Bitte versuchen Sie es erneut.",
+    "scanAgain": "Erneut scannen"
+  },
+  "dob": {
+    "title": "Identitätsprüfung",
+    "subtitle": "Geben Sie Ihr Geburtsdatum ein",
+    "format": "TT.MM.JJJJ",
+    "verify": "Bestätigen",
+    "wrong": "Geburtsdatum stimmt nicht überein. Versuche: {{tries}}/3",
+    "tooManyTries": "Zu viele Versuche. Rückkehr zur Startseite."
+  },
+  "panic": {
+    "title": "Selbstsperre",
+    "summary": "Spielerübersicht",
+    "exclude48": "48-Stunden-Sperre",
+    "exclude48Desc": "Sie dürfen 48 Stunden lang nicht spielen.",
+    "excludePerm": "Dauerhafte Sperre",
+    "excludePermDesc": "Dauerhafte Sperre aus allen unseren Casinos.",
+    "sendMail": "Bestätigung per E-Mail senden",
+    "confirm48Title": "48-Stunden-Sperre bestätigen",
+    "confirmPermTitle": "Dauerhafte Sperre bestätigen",
+    "confirmText": "Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher?",
+    "success": "Ihre Anfrage wurde erfolgreich übermittelt.",
+    "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Wählen Sie 48 Stunden oder dauerhaft.\n4. Bestätigen Sie. Unser Personal kontaktiert Sie bei Bedarf."
+  },
+  "playerInfo": {
+    "title": "Spielerinfo",
+    "personal": "Persönliche Daten",
+    "balance": "Kartenguthaben",
+    "cardCash": "Bargeld",
+    "cardNonCash": "Bonus",
+    "cardPoints": "Punkte",
+    "name": "Name",
+    "dob": "Geburtsdatum",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Adresse",
+    "cardLevel": "Kartenstufe",
+    "lastVisit": "Letzter Besuch",
+    "visits": "Besuche",
+    "visitsWeek": "Diese Woche",
+    "visitsMonth": "Diesen Monat",
+    "visitsYear": "Dieses Jahr",
+    "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Sehen Sie Ihre Daten und Ihr Kartenguthaben ein."
+  },
+  "idle": {
+    "returning": "Rückkehr zur Startseite…"
+  }
+}

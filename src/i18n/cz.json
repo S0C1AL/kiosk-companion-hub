@@ -1,0 +1,95 @@
+{
+  "common": {
+    "home": "Domů",
+    "back": "Zpět",
+    "cancel": "Zrušit",
+    "confirm": "Potvrdit",
+    "loading": "Načítání…",
+    "error": "Něco se pokazilo",
+    "tryAgain": "Zkusit znovu",
+    "howTo": "Jak na to",
+    "close": "Zavřít",
+    "yes": "Ano",
+    "no": "Ne"
+  },
+  "language": {
+    "label": "Jazyk",
+    "cz": "Čeština",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "home": {
+    "title": "Vítejte",
+    "subtitle": "Vyberte si službu",
+    "tiles": {
+      "gamePlan": "Herní plán",
+      "gamePlanDesc": "Pravidla a popisy her",
+      "panicButton": "Sebevyloučení",
+      "panicButtonDesc": "48 hodin nebo trvale",
+      "playerInfo": "Informace o hráči",
+      "playerInfoDesc": "Účet a zůstatek",
+      "comingSoon": "Brzy",
+      "comingSoonDesc": "Další funkce již brzy"
+    }
+  },
+  "gamePlan": {
+    "title": "Herní plán",
+    "technical": "Technické hry",
+    "technicalDesc": "Výherní automaty",
+    "live": "Živé hry",
+    "liveDesc": "Ruleta, karty, kostky",
+    "missingPdf": "Herní plán pro tento jazyk není zatím k dispozici."
+  },
+  "card": {
+    "insertTitle": "Vložte svou kartu",
+    "insertSubtitle": "Pro pokračování přiložte hráčskou kartu ke čtečce",
+    "reading": "Načítám kartu…",
+    "notFound": "Karta nebyla nalezena. Zkuste to prosím znovu.",
+    "scanAgain": "Naskenovat znovu"
+  },
+  "dob": {
+    "title": "Ověření totožnosti",
+    "subtitle": "Zadejte své datum narození",
+    "format": "DD.MM.RRRR",
+    "verify": "Ověřit",
+    "wrong": "Datum narození nesouhlasí. Pokusy: {{tries}}/3",
+    "tooManyTries": "Příliš mnoho pokusů. Vracím se na hlavní obrazovku."
+  },
+  "panic": {
+    "title": "Sebevyloučení",
+    "summary": "Souhrn hráče",
+    "exclude48": "Vyloučení na 48 hodin",
+    "exclude48Desc": "Nebudete moci hrát po dobu 48 hodin.",
+    "excludePerm": "Trvalé vyloučení",
+    "excludePermDesc": "Trvalé vyloučení ze všech našich kasin.",
+    "sendMail": "Zaslat potvrzení e-mailem",
+    "confirm48Title": "Potvrdit 48hodinové vyloučení",
+    "confirmPermTitle": "Potvrdit trvalé vyloučení",
+    "confirmText": "Tato akce nemůže být zrušena. Opravdu chcete pokračovat?",
+    "success": "Žádost byla úspěšně odeslána.",
+    "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Vyberte 48hodinové nebo trvalé vyloučení.\n4. Potvrďte volbu. Personál vás bude kontaktovat v případě potřeby."
+  },
+  "playerInfo": {
+    "title": "Informace o hráči",
+    "personal": "Osobní údaje",
+    "balance": "Zůstatek karty",
+    "cardCash": "Hotovost",
+    "cardNonCash": "Bonus",
+    "cardPoints": "Body",
+    "name": "Jméno",
+    "dob": "Datum narození",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "address": "Adresa",
+    "cardLevel": "Úroveň karty",
+    "lastVisit": "Poslední návštěva",
+    "visits": "Návštěvy",
+    "visitsWeek": "Tento týden",
+    "visitsMonth": "Tento měsíc",
+    "visitsYear": "Tento rok",
+    "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Zobrazte své údaje a zůstatek karty."
+  },
+  "idle": {
+    "returning": "Vracím se na hlavní obrazovku…"
+  }
+}

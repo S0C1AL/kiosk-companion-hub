@@ -142,3 +142,16 @@
     color: var(--color-foreground);
   }
 }
+
+/* Kiosk-specific tweaks: disable text selection and context menu noise. */
+html, body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
