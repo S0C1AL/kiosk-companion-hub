@@ -9,13 +9,15 @@ import { useEffect, useRef } from "react";
 export function CardReaderListener({
   onCard,
   onRemove,
+  initialHasCard = false,
 }: {
   onCard: (cardDecimal: number) => void;
   onRemove?: () => void;
+  initialHasCard?: boolean;
 }) {
   useEffect(() => {
     if (typeof window === "undefined" || typeof EventSource === "undefined") return;
-    let sawInsert = false;
+    let sawInsert = initialHasCard;
     const es = new EventSource("/api/card/stream");
     es.onmessage = (msg) => {
       try {
@@ -34,7 +36,7 @@ export function CardReaderListener({
       }
     };
     return () => es.close();
-  }, [onCard, onRemove]);
+  }, [onCard, onRemove, initialHasCard]);
 
   return null;
 }
