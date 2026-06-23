@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useCardSession } from "@/lib/card-session";
 
 /**
  * Listens for card insert/remove events streamed by the kiosk PC/SC bridge
@@ -13,9 +14,14 @@ export function CardReaderListener({
   onCard: (cardDecimal: number) => void;
   onRemove?: () => void;
 }) {
+  const { cardNo } = useCardSession();
+  const hadCardOnMount = cardNo !== null;
   useEffect(() => {
     if (typeof window === "undefined" || typeof EventSource === "undefined") return;
-    let sawInsert = false;
+    // If a card was already in the session when this listener mounted (e.g. the
+    // user navigated between kiosk pages with the card still inserted), treat
+    // it as already-seen so a subsequent remove event actually fires onRemove.
+    let sawInsert = hadCardOnMount;
     const es = new EventSource("/api/card/stream");
     es.onmessage = (msg) => {
       try {
@@ -34,7 +40,7 @@ export function CardReaderListener({
       }
     };
     return () => es.close();
-  }, [onCard, onRemove]);
+  }, [onCard, onRemove, hadCardOnMount]);
 
   return null;
 }
