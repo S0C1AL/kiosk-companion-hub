@@ -67,6 +67,7 @@
     "confirmPermTitle": "Potvrdit trvalé vyloučení",
     "confirmText": "Tato akce nemůže být zrušena. Opravdu chcete pokračovat?",
     "success": "Žádost byla úspěšně odeslána.",
+    "exclude48Active": "Vyloučení na 48 hodin již bylo odesláno",
     "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Vyberte 48hodinové nebo trvalé vyloučení.\n4. Potvrďte volbu. Personál vás bude kontaktovat v případě potřeby."
   },
   "playerInfo": {
