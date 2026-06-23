@@ -149,7 +149,7 @@ export function CardGate({ children }: Props) {
         </div>
       )}
 
-      {player && tries < 3 && (
+      {player && !verified && tries < 3 && (
         <div className="flex flex-col items-center gap-6">
           <div>
             <h2 className="text-3xl font-semibold text-white">{t("dob.title")}</h2>
