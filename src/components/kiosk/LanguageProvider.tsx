@@ -13,6 +13,7 @@ interface LanguageContextValue {
   lang: Lang;
   setLang: (l: Lang) => void;
   setLangFromNationality: (lang: Lang) => void;
+  resetLanguageOverride: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -42,7 +43,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setLangFromNationality = useCallback((l: Lang) => {
-    // Only auto-set when there's no manual override yet
+    // Only auto-set when there's no manual override for this session.
+    // The override is cleared on each new card insert/removal so nationality
+    // always wins on a fresh card, but manual changes during a session stick.
     if (typeof window !== "undefined") {
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (stored) return;
@@ -51,9 +54,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     void i18n.changeLanguage(l);
   }, []);
 
+  const resetLanguageOverride = useCallback(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
+  }, []);
+
   const value = useMemo(
-    () => ({ lang, setLang, setLangFromNationality }),
-    [lang, setLang, setLangFromNationality],
+    () => ({ lang, setLang, setLangFromNationality, resetLanguageOverride }),
+    [lang, setLang, setLangFromNationality, resetLanguageOverride],
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
