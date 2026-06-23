@@ -45,7 +45,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
     onSuccess: () => {
       setDone(true);
       setPending(null);
-      setTimeout(() => navigate({ to: "/" }), 10_000);
+      setTimeout(() => navigate({ to: "/" }), 3_000);
     },
   });
 
@@ -62,6 +62,12 @@ function PanicInner({ player }: { player: PlayerInfo }) {
     <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_1.4fr]">
       <PlayerSummaryCard player={player} />
       <div className="flex flex-col gap-4">
+        {excluded48 && (
+          <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/40 bg-emerald-500/15 p-4 text-emerald-100">
+            <CheckCircle2 className="size-7 shrink-0" />
+            <p className="text-lg font-medium">{t("panic.exclude48Success")}</p>
+          </div>
+        )}
         <ActionCard
           icon={Clock}
           gradient="from-amber-500 to-orange-600"
