@@ -31,6 +31,7 @@ function GamePlanViewer() {
   return (
     <KioskShell
       title={type === "technical" ? t("gamePlan.technical") : t("gamePlan.live")}
+      idleMs={300_000}
     >
       <div className="mx-auto h-[calc(100vh-220px)] w-full max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white">
         {errored ? (
