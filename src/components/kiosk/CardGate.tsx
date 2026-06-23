@@ -9,6 +9,12 @@ import { CardReaderListener } from "./CardReaderListener";
 import { OnScreenKeypad } from "./OnScreenKeypad";
 import { useLanguage } from "./LanguageProvider";
 import { nationalityToLang } from "@/i18n";
+import {
+  clearSession,
+  markSessionVerified,
+  setSessionCard,
+  useCardSession,
+} from "@/lib/card-session";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -39,11 +45,12 @@ export function CardGate({ children }: Props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { setLangFromNationality } = useLanguage();
-  const [cardNo, setCardNo] = useState<number | null>(null);
+  const session = useCardSession();
+  const cardNo = session.cardNo;
   const [dobDigits, setDobDigits] = useState("");
   const [tries, setTries] = useState(0);
-  const [verified, setVerified] = useState(false);
   const [shake, setShake] = useState(false);
+  const verified = session.verified;
 
   const query = useQuery({
     queryKey: ["player", cardNo],
@@ -73,7 +80,7 @@ export function CardGate({ children }: Props) {
   const handleVerify = () => {
     if (!player) return;
     if (dobInputMatches(dobDigits, player.dateOfBirth)) {
-      setVerified(true);
+      markSessionVerified();
     } else {
       setShake(true);
       setTimeout(() => setShake(false), 400);
@@ -83,10 +90,9 @@ export function CardGate({ children }: Props) {
   };
 
   const endSession = () => {
-    setCardNo(null);
+    clearSession();
     setDobDigits("");
     setTries(0);
-    setVerified(false);
     // Always send the user back to the home screen on card removal.
     navigate({ to: "/" });
   };
@@ -104,7 +110,7 @@ export function CardGate({ children }: Props) {
     <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center px-6 py-10 text-center">
       <CardReaderListener
         onCard={(dec) => {
-          if (cardNo === null) setCardNo(dec);
+          if (cardNo === null) setSessionCard(dec);
         }}
         onRemove={endSession}
       />
@@ -133,7 +139,7 @@ export function CardGate({ children }: Props) {
           <button
             type="button"
             onClick={() => {
-              setCardNo(null);
+              clearSession();
               setDobDigits("");
             }}
             className="rounded-2xl bg-white px-6 py-3 text-lg font-semibold text-slate-900 transition hover:bg-white/90"
