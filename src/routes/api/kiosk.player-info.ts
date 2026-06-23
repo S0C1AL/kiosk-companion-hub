@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { fetchPlayerInfoRaw, pickPlayer } from "@/lib/player-api.server";
+import { fetchPlayerInfoRaw, getPlayerInfoUrl, pickPlayer } from "@/lib/player-api.server";
 
 export const Route = createFileRoute("/api/kiosk/player-info")({
   server: {
@@ -21,8 +21,14 @@ export const Route = createFileRoute("/api/kiosk/player-info")({
           return Response.json({ ok: true, found: Boolean(player), player, raw });
         } catch (error) {
           console.error("[api/kiosk/player-info]", error);
+          const upstreamUrl = await getPlayerInfoUrl(parsed.data.cardNo);
           return Response.json(
-            { ok: false, error: error instanceof Error ? error.message : "Player lookup failed" },
+            {
+              ok: false,
+              error: error instanceof Error ? error.message : "Player lookup failed",
+              cause: error instanceof Error && error.cause instanceof Error ? error.cause.message : undefined,
+              upstreamUrl,
+            },
             { status: 502 },
           );
         }
