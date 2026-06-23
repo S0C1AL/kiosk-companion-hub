@@ -5,14 +5,10 @@ import type {
   PlayerInfo,
 } from "./player-types";
 
-async function getConfig() {
-  const { readKioskConfig } = await import("./kiosk-config.server");
-  return readKioskConfig();
-}
-
 export const getKioskClientConfig = createServerFn({ method: "GET" }).handler(
   async (): Promise<KioskClientConfig> => {
-    const cfg = await getConfig();
+    const { readKioskConfig } = await import("./kiosk-config.server");
+    const cfg = readKioskConfig();
     return { casinoId: cfg.casinoId };
   },
 );
@@ -40,7 +36,8 @@ export const excludePlayer48h = createServerFn({ method: "POST" })
     z.object({ playerId: z.number().int().positive() }).parse(d),
   )
   .handler(async ({ data }) => {
-    const cfg = await getConfig();
+    const { readKioskConfig } = await import("./kiosk-config.server");
+    const cfg = readKioskConfig();
     const url = `http://${cfg.baseIP}:${cfg.writePort}/excludeperson`;
     const res = await fetch(url, {
       method: "POST",
@@ -58,7 +55,8 @@ export const blacklistPlayer = createServerFn({ method: "POST" })
       .parse(d),
   )
   .handler(async ({ data }) => {
-    const cfg = await getConfig();
+    const { readKioskConfig } = await import("./kiosk-config.server");
+    const cfg = readKioskConfig();
     const url = `http://${cfg.baseIP}:${cfg.writePort}/blacklistperson`;
     const res = await fetch(url, {
       method: "POST",
