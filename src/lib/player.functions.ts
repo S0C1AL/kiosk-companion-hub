@@ -5,6 +5,11 @@ import type {
   PlayerInfo,
 } from "./player-types";
 
+async function getConfig() {
+  const { readKioskConfig } = await import("./kiosk-config.server");
+  return readKioskConfig();
+}
+
 export const getKioskClientConfig = createServerFn({ method: "GET" }).handler(
   async (): Promise<KioskClientConfig> => {
     const cfg = await getConfig();
