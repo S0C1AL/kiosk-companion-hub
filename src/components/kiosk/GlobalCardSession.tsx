@@ -9,6 +9,30 @@ import {
   setSessionCard,
   useCardSession,
 } from "@/lib/card-session";
+import { LANGS } from "@/i18n";
+
+/**
+ * Warm the HTTP cache for all game-plan PDFs once at boot. The handler sets
+ * `cache-control: public, max-age=300`, so subsequent <object data=...>
+ * loads in the viewer come from cache and render instantly.
+ */
+function usePrefetchGamePlans() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const types: Array<"technical" | "live"> = ["technical", "live"];
+    const urls = types.flatMap((t) => LANGS.map((l) => `/game-plans/${t}.${l}.pdf`));
+    // Defer so it doesn't fight the initial render.
+    const idle = (cb: () => void) =>
+      (window as unknown as { requestIdleCallback?: (cb: () => void) => number })
+        .requestIdleCallback?.(cb) ?? window.setTimeout(cb, 1500);
+    idle(() => {
+      for (const url of urls) {
+        // HEAD would skip the body; we need the body in the disk cache.
+        fetch(url, { method: "GET", cache: "force-cache" }).catch(() => {});
+      }
+    });
+  }, []);
+}
 
 /**
  * Global card session manager mounted at the app root.
@@ -22,6 +46,7 @@ import {
 export function GlobalCardSession() {
   const { setLangFromNationality } = useLanguage();
   const { cardNo } = useCardSession();
+  usePrefetchGamePlans();
 
   const query = useQuery({
     queryKey: ["player", cardNo],
