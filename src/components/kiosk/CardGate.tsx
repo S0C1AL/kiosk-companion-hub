@@ -44,7 +44,7 @@ function dobInputMatches(digits: string, isoDate: string): boolean {
 export function CardGate({ children }: Props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setLangFromNationality, resetLanguageOverride } = useLanguage();
+  const { setLangFromNationality } = useLanguage();
   const session = useCardSession();
   const cardNo = session.cardNo;
   const [dobDigits, setDobDigits] = useState("");
@@ -110,12 +110,7 @@ export function CardGate({ children }: Props) {
     <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center px-6 py-10 text-center">
       <CardReaderListener
         onCard={(dec) => {
-          if (cardNo === null) {
-            // Fresh card insert: drop any prior manual language pick so the
-            // card's nationality drives the language for this session.
-            resetLanguageOverride();
-            setSessionCard(dec);
-          }
+          if (cardNo === null) setSessionCard(dec);
         }}
         onRemove={endSession}
       />

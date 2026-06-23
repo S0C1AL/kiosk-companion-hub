@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useNavigate, useRouter } from "@tanstack/react-router";
 
-const IDLE_MS = 60_000;
+const DEFAULT_IDLE_MS = 60_000;
 
-export function IdleReset() {
+export function IdleReset({ timeoutMs = DEFAULT_IDLE_MS }: { timeoutMs?: number } = {}) {
   const navigate = useNavigate();
   const router = useRouter();
   const timer = useRef<number | null>(null);
@@ -15,7 +15,7 @@ export function IdleReset() {
         if (router.state.location.pathname !== "/") {
           navigate({ to: "/" });
         }
-      }, IDLE_MS);
+      }, timeoutMs);
     };
     const events: (keyof WindowEventMap)[] = [
       "pointerdown",
@@ -29,7 +29,7 @@ export function IdleReset() {
       events.forEach((e) => window.removeEventListener(e, reset));
       if (timer.current) window.clearTimeout(timer.current);
     };
-  }, [navigate, router]);
+  }, [navigate, router, timeoutMs]);
 
   return null;
 }
