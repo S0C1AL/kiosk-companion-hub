@@ -16,6 +16,7 @@ import { Route as GamePlanIndexRouteImport } from './routes/game-plan.index'
 import { Route as GamePlansSplatRouteImport } from './routes/game-plans.$'
 import { Route as GamePlanTypeRouteImport } from './routes/game-plan.$type'
 import { Route as ApiPublicCardEventRouteImport } from './routes/api/public/card-event'
+import { Route as ApiKioskPlayerInfoRouteImport } from './routes/api/kiosk.player-info'
 import { Route as ApiCardStreamRouteImport } from './routes/api/card.stream'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const ApiPublicCardEventRoute = ApiPublicCardEventRouteImport.update({
   path: '/api/public/card-event',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiKioskPlayerInfoRoute = ApiKioskPlayerInfoRouteImport.update({
+  id: '/api/kiosk/player-info',
+  path: '/api/kiosk/player-info',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiCardStreamRoute = ApiCardStreamRouteImport.update({
   id: '/api/card/stream',
   path: '/api/card/stream',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/panic-button': typeof PanicButtonIndexRoute
   '/player-info': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/panic-button/'
     | '/player-info/'
     | '/api/card/stream'
+    | '/api/kiosk/player-info'
     | '/api/public/card-event'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/panic-button'
     | '/player-info'
     | '/api/card/stream'
+    | '/api/kiosk/player-info'
     | '/api/public/card-event'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/panic-button/'
     | '/player-info/'
     | '/api/card/stream'
+    | '/api/kiosk/player-info'
     | '/api/public/card-event'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   PanicButtonIndexRoute: typeof PanicButtonIndexRoute
   PlayerInfoIndexRoute: typeof PlayerInfoIndexRoute
   ApiCardStreamRoute: typeof ApiCardStreamRoute
+  ApiKioskPlayerInfoRoute: typeof ApiKioskPlayerInfoRoute
   ApiPublicCardEventRoute: typeof ApiPublicCardEventRoute
 }
 
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicCardEventRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/kiosk/player-info': {
+      id: '/api/kiosk/player-info'
+      path: '/api/kiosk/player-info'
+      fullPath: '/api/kiosk/player-info'
+      preLoaderRoute: typeof ApiKioskPlayerInfoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/card/stream': {
       id: '/api/card/stream'
       path: '/api/card/stream'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   PanicButtonIndexRoute: PanicButtonIndexRoute,
   PlayerInfoIndexRoute: PlayerInfoIndexRoute,
   ApiCardStreamRoute: ApiCardStreamRoute,
+  ApiKioskPlayerInfoRoute: ApiKioskPlayerInfoRoute,
   ApiPublicCardEventRoute: ApiPublicCardEventRoute,
 }
 export const routeTree = rootRouteImport
