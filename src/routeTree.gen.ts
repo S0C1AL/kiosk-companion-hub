@@ -17,6 +17,7 @@ import { Route as GamePlansSplatRouteImport } from './routes/game-plans.$'
 import { Route as GamePlanTypeRouteImport } from './routes/game-plan.$type'
 import { Route as ApiPublicCardEventRouteImport } from './routes/api/public/card-event'
 import { Route as ApiKioskPlayerInfoRouteImport } from './routes/api/kiosk.player-info'
+import { Route as ApiKioskHealthRouteImport } from './routes/api/kiosk.health'
 import { Route as ApiCardStreamRouteImport } from './routes/api/card.stream'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const ApiKioskPlayerInfoRoute = ApiKioskPlayerInfoRouteImport.update({
   path: '/api/kiosk/player-info',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiKioskHealthRoute = ApiKioskHealthRouteImport.update({
+  id: '/api/kiosk/health',
+  path: '/api/kiosk/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiCardStreamRoute = ApiCardStreamRouteImport.update({
   id: '/api/card/stream',
   path: '/api/card/stream',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/panic-button': typeof PanicButtonIndexRoute
   '/player-info': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/panic-button/'
     | '/player-info/'
     | '/api/card/stream'
+    | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/panic-button'
     | '/player-info'
     | '/api/card/stream'
+    | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/panic-button/'
     | '/player-info/'
     | '/api/card/stream'
+    | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   PanicButtonIndexRoute: typeof PanicButtonIndexRoute
   PlayerInfoIndexRoute: typeof PlayerInfoIndexRoute
   ApiCardStreamRoute: typeof ApiCardStreamRoute
+  ApiKioskHealthRoute: typeof ApiKioskHealthRoute
   ApiKioskPlayerInfoRoute: typeof ApiKioskPlayerInfoRoute
   ApiPublicCardEventRoute: typeof ApiPublicCardEventRoute
 }
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiKioskPlayerInfoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/kiosk/health': {
+      id: '/api/kiosk/health'
+      path: '/api/kiosk/health'
+      fullPath: '/api/kiosk/health'
+      preLoaderRoute: typeof ApiKioskHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/card/stream': {
       id: '/api/card/stream'
       path: '/api/card/stream'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   PanicButtonIndexRoute: PanicButtonIndexRoute,
   PlayerInfoIndexRoute: PlayerInfoIndexRoute,
   ApiCardStreamRoute: ApiCardStreamRoute,
+  ApiKioskHealthRoute: ApiKioskHealthRoute,
   ApiKioskPlayerInfoRoute: ApiKioskPlayerInfoRoute,
   ApiPublicCardEventRoute: ApiPublicCardEventRoute,
 }
