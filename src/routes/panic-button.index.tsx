@@ -30,13 +30,13 @@ function PanicInner({ player }: { player: PlayerInfo }) {
   const [pending, setPending] = useState<null | "48" | "perm">(null);
   const [sendMail, setSendMail] = useState(false);
   const [done, setDone] = useState(false);
+  const [excluded48, setExcluded48] = useState(false);
 
   const m48 = useMutation({
     mutationFn: () => excludePlayer48h({ data: { playerId: player.playerId } }),
     onSuccess: () => {
-      setDone(true);
       setPending(null);
-      setTimeout(() => navigate({ to: "/" }), 10_000);
+      setExcluded48(true);
     },
   });
   const mPerm = useMutation({
@@ -68,6 +68,8 @@ function PanicInner({ player }: { player: PlayerInfo }) {
           title={t("panic.exclude48")}
           desc={t("panic.exclude48Desc")}
           onClick={() => setPending("48")}
+          disabled={excluded48}
+          badge={excluded48 ? t("panic.exclude48Active") : undefined}
         />
         <ActionCard
           icon={ShieldX}
@@ -147,26 +149,37 @@ function ActionCard({
   title,
   desc,
   onClick,
+  disabled,
+  badge,
 }: {
   icon: typeof Clock;
   gradient: string;
   title: string;
   desc: string;
   onClick: () => void;
+  disabled?: boolean;
+  badge?: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       className={cn(
         "flex items-start gap-5 rounded-3xl bg-gradient-to-br p-6 text-left shadow-xl ring-1 ring-white/10 transition hover:scale-[1.01] active:scale-[0.99]",
         gradient,
+        disabled && "cursor-not-allowed opacity-50 hover:scale-100 active:scale-100",
       )}
     >
       <Icon className="size-12 shrink-0" />
-      <div>
+      <div className="flex-1">
         <div className="text-2xl font-semibold">{title}</div>
         <div className="mt-1 text-base text-white/80">{desc}</div>
+        {badge && (
+          <div className="mt-2 inline-block rounded-full bg-white/20 px-3 py-1 text-sm font-medium">
+            {badge}
+          </div>
+        )}
       </div>
     </button>
   );

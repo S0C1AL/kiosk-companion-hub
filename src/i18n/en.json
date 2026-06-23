@@ -67,6 +67,7 @@
     "confirmPermTitle": "Confirm permanent exclusion",
     "confirmText": "This action cannot be undone. Are you sure?",
     "success": "Your request has been submitted successfully.",
+    "exclude48Active": "48-hour exclusion already requested",
     "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. Choose 48-hour or permanent exclusion.\n4. Confirm. Our staff will contact you if needed."
   },
   "playerInfo": {
@@ -74,7 +75,7 @@
     "personal": "Personal details",
     "balance": "Card balance",
     "cardCash": "Cash",
-    "cardNonCash": "Bonus",
+    "cardNonCash": "Non-cash",
     "cardPoints": "Points",
     "name": "Name",
     "dob": "Date of birth",
