@@ -68,6 +68,7 @@
     "confirmText": "Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher?",
     "success": "Ihre Anfrage wurde erfolgreich übermittelt.",
     "exclude48Active": "48-Stunden-Sperre wurde bereits angefordert",
+    "exclude48Success": "48-Stunden-Sperre erfolgreich aktiviert.",
     "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Wählen Sie 48 Stunden oder dauerhaft.\n4. Bestätigen Sie. Unser Personal kontaktiert Sie bei Bedarf."
   },
   "playerInfo": {
