@@ -6,14 +6,16 @@ export function KioskShell({
   title,
   children,
   actions,
+  idleMs,
 }: {
   title?: string;
   children: ReactNode;
   actions?: ReactNode;
+  idleMs?: number;
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
-      <IdleReset />
+      <IdleReset timeoutMs={idleMs} />
       <KioskHeader />
       {(title || actions) && (
         <div className="flex items-center justify-between gap-4 px-8 pb-2">

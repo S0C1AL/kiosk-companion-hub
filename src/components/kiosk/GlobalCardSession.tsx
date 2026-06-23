@@ -20,7 +20,7 @@ import {
  *   before the user opens Self-Exclusion / Player Info.
  */
 export function GlobalCardSession() {
-  const { setLangFromNationality, resetLanguageOverride } = useLanguage();
+  const { setLangFromNationality } = useLanguage();
   const { cardNo } = useCardSession();
 
   const query = useQuery({
@@ -39,10 +39,20 @@ export function GlobalCardSession() {
   return (
     <CardReaderListener
       onCard={(dec) => {
-        resetLanguageOverride();
         setSessionCard(dec);
       }}
-      onRemove={() => clearSession()}
+      onRemove={() => {
+        // Drop any manual language pick when the card leaves, so the next
+        // card starts fresh with nationality-based auto-detection.
+        resetOverrideViaStorage();
+        clearSession();
+      }}
     />
   );
+}
+
+function resetOverrideViaStorage() {
+  if (typeof window !== "undefined") {
+    window.localStorage.removeItem("kiosk-lang-override");
+  }
 }
