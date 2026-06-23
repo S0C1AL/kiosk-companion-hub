@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Build for a plain Node.js server by default (the kiosk runs `node .output/server/index.mjs`).
+  // The upstream template defaults to the Cloudflare Workers preset, which produces a bundle
+  // that boots to a blank page on Node. Override via `NITRO_PRESET=...` when needed.
+  nitro: {
+    preset: process.env.NITRO_PRESET ?? "node-server",
+  },
 });
