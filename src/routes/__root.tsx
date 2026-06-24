@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "../components/kiosk/LanguageProvider";
 import { GlobalCardSession } from "../components/kiosk/GlobalCardSession";
+import { CustomCursor } from "../components/kiosk/CustomCursor";
 import "../i18n";
 
 function NotFoundComponent() {
@@ -122,6 +123,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <GlobalCardSession />
+        <CustomCursor />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </LanguageProvider>

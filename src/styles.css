@@ -149,6 +149,11 @@ html, body {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  cursor: none;
+}
+
+*, *::before, *::after {
+  cursor: none !important;
 }
 
 input, textarea {
