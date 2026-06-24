@@ -53,6 +53,7 @@ export function readKioskConfig(): KioskConfig {
     casinoId: process.env.KIOSK_CASINO_ID ?? DEFAULTS.casinoId,
     readPort: Number(process.env.KIOSK_READ_PORT ?? DEFAULTS.readPort),
     writePort: Number(process.env.KIOSK_WRITE_PORT ?? DEFAULTS.writePort),
+    levelColors: DEFAULTS.levelColors,
   };
   return cached;
 }
