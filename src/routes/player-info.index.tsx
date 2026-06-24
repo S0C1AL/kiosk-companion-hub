@@ -5,7 +5,8 @@ import { Loader2 } from "lucide-react";
 import { KioskShell } from "@/components/kiosk/KioskShell";
 import { CardGate } from "@/components/kiosk/CardGate";
 import { HowToPanel } from "@/components/kiosk/HowToPanel";
-import { getPlayerBalance } from "@/lib/player.functions";
+import { getPlayerBalance, getKioskClientConfig } from "@/lib/player.functions";
+import { useState } from "react";
 import {
   currencyCodeToLabel,
   formatPlayerName,
@@ -36,6 +37,17 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
     queryFn: () => getPlayerBalance({ data: { playerId: player.playerId } }),
     staleTime: 15_000,
   });
+  const cfgQuery = useQuery({
+    queryKey: ["kiosk-config"],
+    queryFn: () => getKioskClientConfig(),
+    staleTime: 5 * 60_000,
+  });
+  const [imgError, setImgError] = useState(false);
+
+  const levelColor =
+    cfgQuery.data?.levelColors?.[player.cardLevelName] ||
+    player.primaryLevelColour ||
+    "#475569";
 
   const currency = balanceQuery.data
     ? currencyCodeToLabel(balanceQuery.data.currency)
@@ -66,17 +78,35 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
         </h2>
         <div className="mb-6 flex items-center gap-4">
           <div
-            className="grid size-16 place-items-center rounded-2xl text-2xl font-bold text-white"
-            style={{ backgroundColor: player.primaryLevelColour || "#475569" }}
+            className="grid size-24 place-items-center overflow-hidden rounded-2xl text-3xl font-bold text-white"
+            style={{
+              boxShadow: `0 0 0 4px ${levelColor}`,
+              backgroundColor: levelColor,
+            }}
           >
-            {formatPlayerName(player).slice(0, 1)}
+            {!imgError ? (
+              <img
+                src={`/api/kiosk/player-image/${player.playerId}`}
+                alt=""
+                className="size-full object-cover"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <span>{formatPlayerName(player).slice(0, 1)}</span>
+            )}
           </div>
           <div>
             <div className="text-2xl font-semibold text-white">
               {formatPlayerName(player)}
             </div>
             <div className="text-sm text-white/60">
-              {player.cardLevelName} · ID {player.playerId}
+              <span
+                className="inline-block rounded-md px-2 py-0.5 text-xs font-semibold text-white"
+                style={{ backgroundColor: levelColor }}
+              >
+                {player.cardLevelName}
+              </span>
+              <span className="ml-2">ID {player.playerId}</span>
             </div>
           </div>
         </div>
@@ -93,15 +123,15 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
           <Row label={t("playerInfo.lastVisit")} value={lastVisit} />
           <Row
             label={t("playerInfo.visitsWeek")}
-            value={String(player.visitsLastWeek ?? 0)}
+            value={String(player.visitsGDLastWeek ?? player.visitsLastWeek ?? 0)}
           />
           <Row
             label={t("playerInfo.visitsMonth")}
-            value={String(player.visitsLastMonth ?? 0)}
+            value={String(player.visitsGDLastMonth ?? player.visitsLastMonth ?? 0)}
           />
           <Row
             label={t("playerInfo.visitsYear")}
-            value={String(player.visitsLastYear ?? 0)}
+            value={String(player.visitsGDLastYear ?? player.visitsLastYear ?? 0)}
           />
         </dl>
       </section>
