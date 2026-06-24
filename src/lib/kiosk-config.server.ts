@@ -5,6 +5,7 @@ export interface KioskConfig {
   casinoId: string;
   readPort: number;
   writePort: number;
+  levelColors: Record<string, string>;
 }
 
 const DEFAULTS: KioskConfig = {
@@ -12,6 +13,11 @@ const DEFAULTS: KioskConfig = {
   casinoId: "DEMO",
   readPort: 2012,
   writePort: 5074,
+  levelColors: {
+    Blue: "#0000FF",
+    Gold: "#FABB00",
+    Platinum: "#D9D9D9",
+  },
 };
 
 const CONFIG_PATHS = [
@@ -30,7 +36,11 @@ export function readKioskConfig(): KioskConfig {
       if (fs.existsSync(p)) {
         const raw = fs.readFileSync(p, "utf-8");
         const parsed = JSON.parse(raw) as Partial<KioskConfig>;
-        cached = { ...DEFAULTS, ...parsed };
+        cached = {
+          ...DEFAULTS,
+          ...parsed,
+          levelColors: { ...DEFAULTS.levelColors, ...(parsed.levelColors ?? {}) },
+        };
         return cached;
       }
     } catch (err) {
