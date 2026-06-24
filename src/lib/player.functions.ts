@@ -9,7 +9,7 @@ export const getKioskClientConfig = createServerFn({ method: "GET" }).handler(
   async (): Promise<KioskClientConfig> => {
     const { readKioskConfig } = await import("./kiosk-config.server");
     const cfg = readKioskConfig();
-    return { casinoId: cfg.casinoId };
+    return { casinoId: cfg.casinoId, levelColors: cfg.levelColors };
   },
 );
 

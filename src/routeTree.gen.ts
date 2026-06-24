@@ -19,6 +19,7 @@ import { Route as ApiPublicCardEventRouteImport } from './routes/api/public/card
 import { Route as ApiKioskPlayerInfoRouteImport } from './routes/api/kiosk.player-info'
 import { Route as ApiKioskHealthRouteImport } from './routes/api/kiosk.health'
 import { Route as ApiCardStreamRouteImport } from './routes/api/card.stream'
+import { Route as ApiKioskPlayerImagePlayerIdRouteImport } from './routes/api/kiosk.player-image.$playerId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +71,12 @@ const ApiCardStreamRoute = ApiCardStreamRouteImport.update({
   path: '/api/card/stream',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiKioskPlayerImagePlayerIdRoute =
+  ApiKioskPlayerImagePlayerIdRouteImport.update({
+    id: '/api/kiosk/player-image/$playerId',
+    path: '/api/kiosk/player-image/$playerId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
+  '/api/kiosk/player-image/$playerId': typeof ApiKioskPlayerImagePlayerIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesByTo {
   '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
+  '/api/kiosk/player-image/$playerId': typeof ApiKioskPlayerImagePlayerIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +116,7 @@ export interface FileRoutesById {
   '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
+  '/api/kiosk/player-image/$playerId': typeof ApiKioskPlayerImagePlayerIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
+    | '/api/kiosk/player-image/$playerId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
+    | '/api/kiosk/player-image/$playerId'
   id:
     | '__root__'
     | '/'
@@ -145,6 +157,7 @@ export interface FileRouteTypes {
     | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
+    | '/api/kiosk/player-image/$playerId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +171,7 @@ export interface RootRouteChildren {
   ApiKioskHealthRoute: typeof ApiKioskHealthRoute
   ApiKioskPlayerInfoRoute: typeof ApiKioskPlayerInfoRoute
   ApiPublicCardEventRoute: typeof ApiPublicCardEventRoute
+  ApiKioskPlayerImagePlayerIdRoute: typeof ApiKioskPlayerImagePlayerIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCardStreamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/kiosk/player-image/$playerId': {
+      id: '/api/kiosk/player-image/$playerId'
+      path: '/api/kiosk/player-image/$playerId'
+      fullPath: '/api/kiosk/player-image/$playerId'
+      preLoaderRoute: typeof ApiKioskPlayerImagePlayerIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +267,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiKioskHealthRoute: ApiKioskHealthRoute,
   ApiKioskPlayerInfoRoute: ApiKioskPlayerInfoRoute,
   ApiPublicCardEventRoute: ApiPublicCardEventRoute,
+  ApiKioskPlayerImagePlayerIdRoute: ApiKioskPlayerImagePlayerIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

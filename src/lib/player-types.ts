@@ -26,6 +26,9 @@ export interface PlayerInfo {
   visitsLastWeek?: number;
   visitsLastMonth?: number;
   visitsLastYear?: number;
+  visitsGDLastWeek?: number;
+  visitsGDLastMonth?: number;
+  visitsGDLastYear?: number;
   primaryLevelColour?: string;
   document?: PlayerDocument[];
 }
@@ -42,6 +45,7 @@ export interface PlayerBalance {
 
 export interface KioskClientConfig {
   casinoId: string;
+  levelColors: Record<string, string>;
 }
 
 export function currencyCodeToLabel(code: number): string {
