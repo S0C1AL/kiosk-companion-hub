@@ -29,7 +29,7 @@ export function KioskHeader({ showHome = true }: { showHome?: boolean }) {
         {showHome && !isHome && (
           <Link
             to="/"
-            className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-base font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
+            className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-4 py-2.5 text-base font-medium text-white/90"
           >
             <Home className="size-5" />
             <span>{t("common.home")}</span>

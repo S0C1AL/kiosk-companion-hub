@@ -61,12 +61,10 @@ function Home() {
             const inner = (
               <div
                 className={cn(
-                  "group relative flex h-64 flex-col justify-between overflow-hidden rounded-3xl p-8 shadow-xl ring-1 ring-white/10 transition",
+                  "group relative flex h-64 flex-col justify-between overflow-hidden rounded-3xl p-8 shadow-xl ring-1 ring-white/10",
                   "bg-gradient-to-br",
                   tile.gradient,
-                  tile.disabled
-                    ? "opacity-50"
-                    : "hover:scale-[1.02] active:scale-[0.99]",
+                  tile.disabled && "opacity-50",
                 )}
               >
                 <Icon className="size-14" />

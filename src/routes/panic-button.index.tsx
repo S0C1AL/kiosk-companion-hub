@@ -123,7 +123,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
 function PlayerSummaryCard({ player }: { player: PlayerInfo }) {
   const { t } = useTranslation();
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+    <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
       <div className="mb-4 text-sm uppercase tracking-wider text-white/50">
         {t("panic.summary")}
       </div>
@@ -172,9 +172,9 @@ function ActionCard({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "flex items-start gap-5 rounded-3xl bg-gradient-to-br p-6 text-left shadow-xl ring-1 ring-white/10 transition hover:scale-[1.01] active:scale-[0.99]",
+        "flex items-start gap-5 rounded-3xl bg-gradient-to-br p-6 text-left shadow-xl ring-1 ring-white/10",
         gradient,
-        disabled && "cursor-not-allowed opacity-50 hover:scale-100 active:scale-100",
+        disabled && "cursor-not-allowed opacity-50",
       )}
     >
       <Icon className="size-12 shrink-0" />

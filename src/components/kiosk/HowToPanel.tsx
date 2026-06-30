@@ -11,7 +11,7 @@ export function HowToPanel({ contentKey }: { contentKey: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-5 py-3 text-base font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
+        className="flex items-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 text-base font-medium text-white/90"
       >
         <HelpCircle className="size-5" />
         {t("common.howTo")}
