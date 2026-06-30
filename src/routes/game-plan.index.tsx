@@ -29,7 +29,7 @@ function GamePlanIndex() {
   ];
   return (
     <KioskShell title={t("gamePlan.title")}>
-      <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-6">
+      <div className="grid w-full grid-cols-2 gap-6">
         {tiles.map((tile) => {
           const Icon = tile.icon;
           return (

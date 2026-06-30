@@ -36,7 +36,7 @@ function GamePlanViewer() {
       idleMs={300_000}
     >
       <div
-        className="relative mx-auto h-[calc(100vh-220px)] w-full max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white"
+        className="relative h-[calc(100vh-220px)] w-full overflow-hidden rounded-3xl border border-white/10 bg-white"
         onContextMenu={(e) => e.preventDefault()}
       >
         {errored ? (

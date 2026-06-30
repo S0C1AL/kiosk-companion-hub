@@ -59,7 +59,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
   }
 
   return (
-    <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_1.4fr]">
+    <div className="grid w-full gap-6 lg:grid-cols-[1fr_1.4fr]">
       <PlayerSummaryCard player={player} />
       <div className="flex flex-col gap-4">
         {excluded48 && (

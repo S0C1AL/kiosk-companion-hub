@@ -71,7 +71,7 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
     : "—";
 
   return (
-    <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-2">
+    <div className="grid w-full gap-6 lg:grid-cols-2">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
         <h2 className="mb-4 text-sm uppercase tracking-wider text-white/50">
           {t("playerInfo.personal")}
