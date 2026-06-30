@@ -1,73 +1,86 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const SIZE = 40;
-const SWIPE_THRESHOLD = 8; // px
-const FADE_DELAY = 400; // ms
+const SWIPE_THRESHOLD = 8;
+const FADE_DELAY = 400;
 
+// Render-free cursor: all updates go straight to the DOM via refs, so pointer
+// activity never triggers a React re-render (critical on the Pi where any
+// extra work-per-tap shows up as input lag).
 export function CustomCursor() {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  const [pressed, setPressed] = useState(false);
-  const fadeTimer = useRef<number | null>(null);
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let pressed = false;
+    let x = 0;
+    let y = 0;
+    let rafQueued = false;
+    let fadeTimer: number | null = null;
+    let touchStart: { x: number; y: number } | null = null;
+
+    const setOpacity = (v: number) => {
+      el.style.opacity = String(v);
+    };
+
+    const flush = () => {
+      rafQueued = false;
+      el.style.transform = `translate3d(${x - SIZE / 2}px, ${y - SIZE / 2}px, 0) scale(${pressed ? 1.6 : 1})`;
+    };
+    const schedule = () => {
+      if (!rafQueued) {
+        rafQueued = true;
+        requestAnimationFrame(flush);
+      }
+    };
+
     const move = (e: PointerEvent) => {
-      if (ref.current) {
-        ref.current.style.transform = `translate(${e.clientX - SIZE / 2}px, ${e.clientY - SIZE / 2}px) scale(${pressedRef.current ? 1.6 : 1})`;
-      }
-
+      x = e.clientX;
+      y = e.clientY;
+      schedule();
       if (e.pointerType === "mouse") {
-        setVisible(true);
-        return;
-      }
-
-      // Touch: hide while swiping (movement beyond threshold)
-      if (pressedRef.current && touchStart.current) {
-        const dx = e.clientX - touchStart.current.x;
-        const dy = e.clientY - touchStart.current.y;
-        if (Math.hypot(dx, dy) > SWIPE_THRESHOLD) {
-          setVisible(false);
-        }
+        setOpacity(pressed ? 0.55 : 0.75);
+      } else if (pressed && touchStart) {
+        const dx = e.clientX - touchStart.x;
+        const dy = e.clientY - touchStart.y;
+        if (Math.hypot(dx, dy) > SWIPE_THRESHOLD) setOpacity(0);
       }
     };
 
     const down = (e: PointerEvent) => {
-      pressedRef.current = true;
-      setPressed(true);
-      if (e.pointerType === "touch") {
-        touchStart.current = { x: e.clientX, y: e.clientY };
+      pressed = true;
+      x = e.clientX;
+      y = e.clientY;
+      if (e.pointerType === "touch") touchStart = { x, y };
+      if (fadeTimer !== null) {
+        window.clearTimeout(fadeTimer);
+        fadeTimer = null;
       }
-      if (ref.current) {
-        ref.current.style.transform = `translate(${e.clientX - SIZE / 2}px, ${e.clientY - SIZE / 2}px) scale(1.6)`;
-      }
-      setVisible(true);
-      if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
+      setOpacity(0.55);
+      schedule();
     };
 
     const up = () => {
-      pressedRef.current = false;
-      setPressed(false);
-      touchStart.current = null;
-      if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
-      fadeTimer.current = window.setTimeout(() => setVisible(false), FADE_DELAY);
+      pressed = false;
+      touchStart = null;
+      if (fadeTimer !== null) window.clearTimeout(fadeTimer);
+      fadeTimer = window.setTimeout(() => setOpacity(0), FADE_DELAY);
+      schedule();
     };
 
-    const leave = () => setVisible(false);
-
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerdown", down);
-    window.addEventListener("pointerup", up);
-    window.addEventListener("pointercancel", up);
-    document.addEventListener("pointerleave", leave);
+    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("pointerdown", down, { passive: true });
+    window.addEventListener("pointerup", up, { passive: true });
+    window.addEventListener("pointercancel", up, { passive: true });
 
     return () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", down);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("pointercancel", up);
-      document.removeEventListener("pointerleave", leave);
-      if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
+      if (fadeTimer !== null) window.clearTimeout(fadeTimer);
     };
   }, []);
 
@@ -83,15 +96,13 @@ export function CustomCursor() {
         height: SIZE,
         borderRadius: "9999px",
         backgroundColor: "var(--color-accent)",
-        opacity: visible ? (pressed ? 0.55 : 0.75) : 0,
+        opacity: 0,
         boxShadow: "0 0 18px 2px var(--color-accent), 0 0 0 2px rgba(255,255,255,0.6) inset",
         pointerEvents: "none",
         zIndex: 9999,
-        transition: "transform 120ms ease-out, opacity 200ms ease-out",
+        transition: "opacity 200ms ease-out",
         willChange: "transform, opacity",
       }}
     />
   );
 }
-
-const pressedRef = { current: false };
