@@ -51,7 +51,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
 
   if (done) {
     return (
-      <div className="mx-auto flex max-w-xl flex-col items-center gap-6 py-20 text-center">
+      <div className="flex w-full flex-col items-center gap-6 py-20 text-center">
         <CheckCircle2 className="size-20 text-emerald-400" />
         <p className="text-2xl font-semibold text-white">{t("panic.success")}</p>
       </div>
@@ -59,7 +59,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
   }
 
   return (
-    <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_1.4fr]">
+    <div className="grid w-full gap-6 lg:grid-cols-[1fr_1.4fr]">
       <PlayerSummaryCard player={player} />
       <div className="flex flex-col gap-4">
         {excluded48 && (

@@ -55,7 +55,7 @@ function Home() {
           <h1 className="text-5xl font-bold tracking-tight">{t("home.title")}</h1>
           <p className="mt-3 text-xl text-white/60">{t("home.subtitle")}</p>
         </div>
-        <div className="grid w-full max-w-5xl grid-cols-2 gap-6">
+        <div className="grid w-full grid-cols-2 gap-6">
           {tiles.map((tile) => {
             const Icon = tile.icon;
             const inner = (
