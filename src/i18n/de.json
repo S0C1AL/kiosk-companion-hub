@@ -69,7 +69,9 @@
     "success": "Ihre Anfrage wurde erfolgreich übermittelt.",
     "exclude48Active": "48-Stunden-Sperre wurde bereits angefordert",
     "exclude48Success": "48-Stunden-Sperre erfolgreich aktiviert.",
-    "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Wählen Sie 48 Stunden oder dauerhaft.\n4. Bestätigen Sie. Unser Personal kontaktiert Sie bei Bedarf."
+    "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Wählen Sie 48 Stunden oder dauerhaft.\n4. Bestätigen Sie. Unser Personal kontaktiert Sie bei Bedarf.",
+    "responsibleGamingTitle": "Verantwortungsvolles Spielen",
+    "responsibleGaming": "Wenn Sie das Gefühl haben, dass das Spielen zum Problem wird, holen Sie sich bitte Hilfe.\n\nHilfetelefon: 0800 137 27 00 (kostenlos, 24/7)\nwww.bzga.de\n\nSie können sich jederzeit vertraulich an unser Personal wenden."
   },
   "playerInfo": {
     "title": "Spielerinfo",
@@ -89,7 +91,9 @@
     "visitsWeek": "Diese Woche",
     "visitsMonth": "Diesen Monat",
     "visitsYear": "Dieses Jahr",
-    "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Sehen Sie Ihre Daten und Ihr Kartenguthaben ein."
+    "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Sehen Sie Ihre Daten und Ihr Kartenguthaben ein.",
+    "tierTitle": "Über Ihre Karte",
+    "tierInfo": "Ihre Kartenstufe spiegelt Ihren Treuestatus wider. Höhere Stufen bringen zusätzliche Vorteile — sprechen Sie unser Personal für Details zu Upgrades, Punkten und Prämien an."
   },
   "idle": {
     "returning": "Rückkehr zur Startseite…"

@@ -69,7 +69,9 @@
     "success": "Žádost byla úspěšně odeslána.",
     "exclude48Active": "Vyloučení na 48 hodin již bylo odesláno",
     "exclude48Success": "48hodinové vyloučení bylo úspěšně aktivováno.",
-    "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Vyberte 48hodinové nebo trvalé vyloučení.\n4. Potvrďte volbu. Personál vás bude kontaktovat v případě potřeby."
+    "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Vyberte 48hodinové nebo trvalé vyloučení.\n4. Potvrďte volbu. Personál vás bude kontaktovat v případě potřeby.",
+    "responsibleGamingTitle": "Zodpovědné hraní",
+    "responsibleGaming": "Pokud máte pocit, že se hraní stává problémem, neváhejte vyhledat pomoc.\n\nLinka pomoci: 800 100 200 (zdarma, 24/7)\nwww.hraniezodpovedne.cz\n\nKdykoli se můžete důvěrně obrátit i na náš personál."
   },
   "playerInfo": {
     "title": "Informace o hráči",
@@ -89,7 +91,9 @@
     "visitsWeek": "Tento týden",
     "visitsMonth": "Tento měsíc",
     "visitsYear": "Tento rok",
-    "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Zobrazte své údaje a zůstatek karty."
+    "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Zobrazte své údaje a zůstatek karty.",
+    "tierTitle": "O vaší kartě",
+    "tierInfo": "Úroveň karty vyjadřuje váš věrnostní status. Vyšší úrovně přinášejí další výhody — pro informace o povýšení, bodech a odměnách se obraťte na náš personál."
   },
   "idle": {
     "returning": "Vracím se na hlavní obrazovku…"
