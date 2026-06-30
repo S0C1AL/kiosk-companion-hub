@@ -38,7 +38,7 @@ function GamePlanIndex() {
               to="/game-plan/$type"
               params={{ type: tile.type }}
               className={cn(
-                "flex h-64 flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br p-8 shadow-xl ring-1 ring-white/10 transition hover:scale-[1.02] active:scale-[0.99]",
+                "flex h-64 flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br p-8 shadow-xl ring-1 ring-white/10",
                 tile.gradient,
               )}
             >
