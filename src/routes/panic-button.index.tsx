@@ -51,7 +51,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
 
   if (done) {
     return (
-      <div className="mx-auto flex max-w-xl flex-col items-center gap-6 py-20 text-center">
+      <div className="flex w-full flex-col items-center gap-6 py-20 text-center">
         <CheckCircle2 className="size-20 text-emerald-400" />
         <p className="text-2xl font-semibold text-white">{t("panic.success")}</p>
       </div>
