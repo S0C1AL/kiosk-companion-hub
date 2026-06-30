@@ -71,14 +71,14 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
     : "—";
 
   return (
-    <div className="grid w-full gap-6 lg:grid-cols-2">
-      <section className="rounded-3xl border border-white/10 bg-white/10 p-6">
-        <h2 className="mb-4 text-sm uppercase tracking-wider text-white/50">
+    <div className="flex w-full flex-col gap-6">
+      <section className="rounded-3xl border border-white/10 bg-white/10 p-8">
+        <h2 className="mb-6 text-base uppercase tracking-wider text-white/50">
           {t("playerInfo.personal")}
         </h2>
-        <div className="mb-6 flex items-center gap-4">
+        <div className="mb-8 flex items-center gap-5">
           <div
-            className="grid size-24 place-items-center overflow-hidden rounded-2xl text-3xl font-bold text-white"
+            className="grid size-32 shrink-0 place-items-center overflow-hidden rounded-2xl text-4xl font-bold text-white"
             style={{
               boxShadow: `0 0 0 4px ${levelColor}`,
               backgroundColor: levelColor,
@@ -95,22 +95,22 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
               <span>{formatPlayerName(player).slice(0, 1)}</span>
             )}
           </div>
-          <div>
-            <div className="text-2xl font-semibold text-white">
+          <div className="min-w-0 flex-1">
+            <div className="truncate text-3xl font-semibold text-white">
               {formatPlayerName(player)}
             </div>
-            <div className="text-sm text-white/60">
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-base text-white/70">
               <span
-                className="inline-block rounded-md px-2 py-0.5 text-xs font-semibold text-white"
+                className="inline-block rounded-lg px-3 py-1 text-sm font-semibold text-white"
                 style={{ backgroundColor: levelColor }}
               >
                 {player.cardLevelName}
               </span>
-              <span className="ml-2">ID {player.playerId}</span>
+              <span>ID {player.playerId}</span>
             </div>
           </div>
         </div>
-        <dl className="space-y-3 text-white">
+        <dl className="space-y-4 text-lg text-white">
           <Row label={t("playerInfo.dob")} value={dob} />
           <Row label={t("playerInfo.email")} value={player.email || "—"} />
           <Row label={t("playerInfo.phone")} value={player.cellPhoneNo || player.phoneNo || "—"} />
@@ -136,8 +136,8 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
         </dl>
       </section>
 
-      <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-700/40 to-teal-700/40 p-6">
-        <h2 className="mb-4 text-sm uppercase tracking-wider text-white/60">
+      <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-700/40 to-teal-700/40 p-8">
+        <h2 className="mb-6 text-base uppercase tracking-wider text-white/60">
           {t("playerInfo.balance")}
         </h2>
         {balanceQuery.isLoading && (
@@ -146,7 +146,7 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
           </div>
         )}
         {balanceQuery.data && (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <BalanceRow
               label={t("playerInfo.cardCash")}
               value={fmt(balanceQuery.data.cardCash)}
@@ -160,7 +160,7 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
               label={t("playerInfo.cardPoints")}
               value={fmtPoints(balanceQuery.data.cardPoints)}
             />
-            <div className="pt-2 text-xs text-white/60">
+            <div className="pt-2 text-sm text-white/60">
               {currency} · Card #{balanceQuery.data.cardNumber}
             </div>
           </div>
@@ -169,13 +169,22 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
           <p className="text-white/80">{t("common.error")}</p>
         )}
       </section>
+
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-8">
+        <h2 className="mb-3 text-base uppercase tracking-wider text-white/50">
+          {t("playerInfo.tierTitle")}
+        </h2>
+        <p className="whitespace-pre-line text-lg leading-relaxed text-white/75">
+          {t("playerInfo.tierInfo")}
+        </p>
+      </section>
     </div>
   );
 }
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between gap-4 border-b border-white/5 pb-2 last:border-0">
+    <div className="flex justify-between gap-4 border-b border-white/5 pb-3 last:border-0">
       <dt className="text-white/60">{label}</dt>
       <dd className="text-right font-medium">{value}</dd>
     </div>
@@ -193,8 +202,8 @@ function BalanceRow({
 }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-white/10 pb-3 last:border-0">
-      <span className="text-white/80">{label}</span>
-      <span className={big ? "text-4xl font-bold text-white" : "text-2xl font-semibold text-white"}>
+      <span className="text-lg text-white/80">{label}</span>
+      <span className={big ? "text-5xl font-bold text-white" : "text-3xl font-semibold text-white"}>
         {value}
       </span>
     </div>
