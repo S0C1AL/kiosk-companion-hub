@@ -69,7 +69,9 @@
     "success": "Your request has been submitted successfully.",
     "exclude48Active": "48-hour exclusion already requested",
     "exclude48Success": "48-hour exclusion successfully activated.",
-    "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. Choose 48-hour or permanent exclusion.\n4. Confirm. Our staff will contact you if needed."
+    "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. Choose 48-hour or permanent exclusion.\n4. Confirm. Our staff will contact you if needed.",
+    "responsibleGamingTitle": "Responsible gaming",
+    "responsibleGaming": "If you feel that gaming is becoming a problem, please reach out for help.\n\nHelpline: 800 100 200 (free, 24/7)\nwww.hraniezodpovedne.cz\n\nYou can always speak to a member of our staff confidentially."
   },
   "playerInfo": {
     "title": "Player Info",
@@ -89,7 +91,9 @@
     "visitsWeek": "This week",
     "visitsMonth": "This month",
     "visitsYear": "This year",
-    "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. View your personal details and card balance."
+    "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. View your personal details and card balance.",
+    "tierTitle": "About your card",
+    "tierInfo": "Your card level reflects your loyalty status with us. Higher tiers unlock additional benefits — ask our staff for details about upgrades, points and rewards."
   },
   "idle": {
     "returning": "Returning to home screen…"

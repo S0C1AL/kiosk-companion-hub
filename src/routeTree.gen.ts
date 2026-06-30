@@ -14,10 +14,12 @@ import { Route as PlayerInfoIndexRouteImport } from './routes/player-info.index'
 import { Route as PanicButtonIndexRouteImport } from './routes/panic-button.index'
 import { Route as GamePlanIndexRouteImport } from './routes/game-plan.index'
 import { Route as GamePlansSplatRouteImport } from './routes/game-plans.$'
+import { Route as GamePlansImgSplatRouteImport } from './routes/game-plans-img.$'
 import { Route as GamePlanTypeRouteImport } from './routes/game-plan.$type'
 import { Route as ApiPublicCardEventRouteImport } from './routes/api/public/card-event'
 import { Route as ApiKioskPlayerInfoRouteImport } from './routes/api/kiosk.player-info'
 import { Route as ApiKioskHealthRouteImport } from './routes/api/kiosk.health'
+import { Route as ApiKioskGamePlanPagesRouteImport } from './routes/api/kiosk.game-plan-pages'
 import { Route as ApiCardStreamRouteImport } from './routes/api/card.stream'
 import { Route as ApiKioskPlayerImagePlayerIdRouteImport } from './routes/api/kiosk.player-image.$playerId'
 
@@ -46,6 +48,11 @@ const GamePlansSplatRoute = GamePlansSplatRouteImport.update({
   path: '/game-plans/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamePlansImgSplatRoute = GamePlansImgSplatRouteImport.update({
+  id: '/game-plans-img/$',
+  path: '/game-plans-img/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GamePlanTypeRoute = GamePlanTypeRouteImport.update({
   id: '/game-plan/$type',
   path: '/game-plan/$type',
@@ -66,6 +73,11 @@ const ApiKioskHealthRoute = ApiKioskHealthRouteImport.update({
   path: '/api/kiosk/health',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiKioskGamePlanPagesRoute = ApiKioskGamePlanPagesRouteImport.update({
+  id: '/api/kiosk/game-plan-pages',
+  path: '/api/kiosk/game-plan-pages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiCardStreamRoute = ApiCardStreamRouteImport.update({
   id: '/api/card/stream',
   path: '/api/card/stream',
@@ -81,11 +93,13 @@ const ApiKioskPlayerImagePlayerIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
+  '/game-plans-img/$': typeof GamePlansImgSplatRoute
   '/game-plans/$': typeof GamePlansSplatRoute
   '/game-plan/': typeof GamePlanIndexRoute
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/game-plan-pages': typeof ApiKioskGamePlanPagesRoute
   '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
@@ -94,11 +108,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
+  '/game-plans-img/$': typeof GamePlansImgSplatRoute
   '/game-plans/$': typeof GamePlansSplatRoute
   '/game-plan': typeof GamePlanIndexRoute
   '/panic-button': typeof PanicButtonIndexRoute
   '/player-info': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/game-plan-pages': typeof ApiKioskGamePlanPagesRoute
   '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
@@ -108,11 +124,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/game-plan/$type': typeof GamePlanTypeRoute
+  '/game-plans-img/$': typeof GamePlansImgSplatRoute
   '/game-plans/$': typeof GamePlansSplatRoute
   '/game-plan/': typeof GamePlanIndexRoute
   '/panic-button/': typeof PanicButtonIndexRoute
   '/player-info/': typeof PlayerInfoIndexRoute
   '/api/card/stream': typeof ApiCardStreamRoute
+  '/api/kiosk/game-plan-pages': typeof ApiKioskGamePlanPagesRoute
   '/api/kiosk/health': typeof ApiKioskHealthRoute
   '/api/kiosk/player-info': typeof ApiKioskPlayerInfoRoute
   '/api/public/card-event': typeof ApiPublicCardEventRoute
@@ -123,11 +141,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/game-plan/$type'
+    | '/game-plans-img/$'
     | '/game-plans/$'
     | '/game-plan/'
     | '/panic-button/'
     | '/player-info/'
     | '/api/card/stream'
+    | '/api/kiosk/game-plan-pages'
     | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
@@ -136,11 +156,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/game-plan/$type'
+    | '/game-plans-img/$'
     | '/game-plans/$'
     | '/game-plan'
     | '/panic-button'
     | '/player-info'
     | '/api/card/stream'
+    | '/api/kiosk/game-plan-pages'
     | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
@@ -149,11 +171,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/game-plan/$type'
+    | '/game-plans-img/$'
     | '/game-plans/$'
     | '/game-plan/'
     | '/panic-button/'
     | '/player-info/'
     | '/api/card/stream'
+    | '/api/kiosk/game-plan-pages'
     | '/api/kiosk/health'
     | '/api/kiosk/player-info'
     | '/api/public/card-event'
@@ -163,11 +187,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GamePlanTypeRoute: typeof GamePlanTypeRoute
+  GamePlansImgSplatRoute: typeof GamePlansImgSplatRoute
   GamePlansSplatRoute: typeof GamePlansSplatRoute
   GamePlanIndexRoute: typeof GamePlanIndexRoute
   PanicButtonIndexRoute: typeof PanicButtonIndexRoute
   PlayerInfoIndexRoute: typeof PlayerInfoIndexRoute
   ApiCardStreamRoute: typeof ApiCardStreamRoute
+  ApiKioskGamePlanPagesRoute: typeof ApiKioskGamePlanPagesRoute
   ApiKioskHealthRoute: typeof ApiKioskHealthRoute
   ApiKioskPlayerInfoRoute: typeof ApiKioskPlayerInfoRoute
   ApiPublicCardEventRoute: typeof ApiPublicCardEventRoute
@@ -211,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamePlansSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game-plans-img/$': {
+      id: '/game-plans-img/$'
+      path: '/game-plans-img/$'
+      fullPath: '/game-plans-img/$'
+      preLoaderRoute: typeof GamePlansImgSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/game-plan/$type': {
       id: '/game-plan/$type'
       path: '/game-plan/$type'
@@ -239,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiKioskHealthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/kiosk/game-plan-pages': {
+      id: '/api/kiosk/game-plan-pages'
+      path: '/api/kiosk/game-plan-pages'
+      fullPath: '/api/kiosk/game-plan-pages'
+      preLoaderRoute: typeof ApiKioskGamePlanPagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/card/stream': {
       id: '/api/card/stream'
       path: '/api/card/stream'
@@ -259,11 +299,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamePlanTypeRoute: GamePlanTypeRoute,
+  GamePlansImgSplatRoute: GamePlansImgSplatRoute,
   GamePlansSplatRoute: GamePlansSplatRoute,
   GamePlanIndexRoute: GamePlanIndexRoute,
   PanicButtonIndexRoute: PanicButtonIndexRoute,
   PlayerInfoIndexRoute: PlayerInfoIndexRoute,
   ApiCardStreamRoute: ApiCardStreamRoute,
+  ApiKioskGamePlanPagesRoute: ApiKioskGamePlanPagesRoute,
   ApiKioskHealthRoute: ApiKioskHealthRoute,
   ApiKioskPlayerInfoRoute: ApiKioskPlayerInfoRoute,
   ApiPublicCardEventRoute: ApiPublicCardEventRoute,

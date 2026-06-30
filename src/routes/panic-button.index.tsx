@@ -59,15 +59,15 @@ function PanicInner({ player }: { player: PlayerInfo }) {
   }
 
   return (
-    <div className="grid w-full gap-6 lg:grid-cols-[1fr_1.4fr]">
+    <div className="flex w-full flex-col gap-6">
       <PlayerSummaryCard player={player} />
+      {excluded48 && (
+        <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/40 bg-emerald-500/15 p-4 text-emerald-100">
+          <CheckCircle2 className="size-7 shrink-0" />
+          <p className="text-lg font-medium">{t("panic.exclude48Success")}</p>
+        </div>
+      )}
       <div className="flex flex-col gap-4">
-        {excluded48 && (
-          <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/40 bg-emerald-500/15 p-4 text-emerald-100">
-            <CheckCircle2 className="size-7 shrink-0" />
-            <p className="text-lg font-medium">{t("panic.exclude48Success")}</p>
-          </div>
-        )}
         <ActionCard
           icon={Clock}
           gradient="from-amber-500 to-orange-600"
@@ -85,6 +85,14 @@ function PanicInner({ player }: { player: PlayerInfo }) {
           onClick={() => setPending("perm")}
         />
       </div>
+      <section className="rounded-3xl border border-white/10 bg-white/5 p-8">
+        <h2 className="mb-3 text-base uppercase tracking-wider text-white/50">
+          {t("panic.responsibleGamingTitle")}
+        </h2>
+        <p className="whitespace-pre-line text-lg leading-relaxed text-white/75">
+          {t("panic.responsibleGaming")}
+        </p>
+      </section>
 
       {pending && (
         <ConfirmModal
@@ -123,11 +131,11 @@ function PanicInner({ player }: { player: PlayerInfo }) {
 function PlayerSummaryCard({ player }: { player: PlayerInfo }) {
   const { t } = useTranslation();
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
-      <div className="mb-4 text-sm uppercase tracking-wider text-white/50">
+    <div className="rounded-3xl border border-white/10 bg-white/10 p-8">
+      <div className="mb-5 text-base uppercase tracking-wider text-white/50">
         {t("panic.summary")}
       </div>
-      <div className="space-y-3 text-white">
+      <div className="space-y-4 text-lg text-white">
         <Field label={t("playerInfo.name")} value={formatPlayerName(player)} />
         <Field
           label={t("playerInfo.dob")}
@@ -172,15 +180,15 @@ function ActionCard({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "flex items-start gap-5 rounded-3xl bg-gradient-to-br p-6 text-left shadow-xl ring-1 ring-white/10",
+        "flex items-start gap-6 rounded-3xl bg-gradient-to-br p-8 text-left shadow-xl ring-1 ring-white/10",
         gradient,
         disabled && "cursor-not-allowed opacity-50",
       )}
     >
-      <Icon className="size-12 shrink-0" />
+      <Icon className="size-16 shrink-0" />
       <div className="flex-1">
-        <div className="text-2xl font-semibold">{title}</div>
-        <div className="mt-1 text-base text-white/80">{desc}</div>
+        <div className="text-3xl font-semibold">{title}</div>
+        <div className="mt-2 text-xl text-white/85">{desc}</div>
         {badge && (
           <div className="mt-2 inline-block rounded-full bg-white/20 px-3 py-1 text-sm font-medium">
             {badge}
