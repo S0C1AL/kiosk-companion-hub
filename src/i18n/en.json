@@ -24,7 +24,7 @@
     "tiles": {
       "gamePlan": "Game Plan",
       "gamePlanDesc": "Rules and game descriptions",
-      "panicButton": "Self-Exclusion",
+      "panicButton": "Panic Button",
       "panicButtonDesc": "48 hours or permanent",
       "playerInfo": "Player Info",
       "playerInfoDesc": "Account and balance",
@@ -56,7 +56,7 @@
     "tooManyTries": "Too many attempts. Returning to home screen."
   },
   "panic": {
-    "title": "Self-Exclusion",
+    "title": "Panic Button",
     "summary": "Player summary",
     "exclude48": "48-hour exclusion",
     "exclude48Desc": "You will not be allowed to play for 48 hours.",
@@ -70,8 +70,11 @@
     "exclude48Active": "48-hour exclusion already requested",
     "exclude48Success": "48-hour exclusion successfully activated.",
     "howTo": "1. Insert your card into the reader.\n2. Enter your date of birth to verify.\n3. Choose 48-hour or permanent exclusion.\n4. Confirm. Our staff will contact you if needed.",
-    "responsibleGamingTitle": "Responsible gaming",
-    "responsibleGaming": "If you feel that gaming is becoming a problem, please reach out for help.\n\nHelpline: 800 100 200 (free, 24/7)\nwww.hraniezodpovedne.cz\n\nYou can always speak to a member of our staff confidentially."
+    "noEmail": "No email on file — please add it at reception.",
+    "noEmailWarning": "No email on file. Please add or update your email at the reception to receive an email confirmation.",
+    "emailLabel": "Email",
+    "responsibleGamingTitle": "Responsible Gaming & Help",
+    "responsibleGaming": "Gambling is prohibited for persons under 18 years of age. Participation in gambling may be harmful.\n\nAt the casino reception you can set or change self-limiting measures:\nØ Number of visits to the gaming area per 1 calendar month\nØ For technical games you can set:\n  o maximum amount of bets per 1 calendar day,\n  o maximum amount of bets per 1 calendar month,\n  o maximum net loss per 1 calendar day,\n  o maximum net loss per 1 calendar month,\n  o maximum number of logins into the user account per 1 calendar month,\n  o maximum total login time into the user account per 1 calendar day,\n  o cool-off period during which a new bet cannot be placed after logout.\n\nØ For live games you can set the maximum net loss for:\n  a) 1 calendar day\n  b) 1 calendar month\n\nInstitutions dealing with prevention and treatment of problem gambling:\n\nAdiktologická poradna PREVENT České Budějovice\nFrantiška Ondříčka 2, 370 11 České Budějovice\nTel.: +420 725 708 078, Email: ap@prevent99.cz\n\nKlinika adiktologie 1. LF UK a VFN v Praze\nApolinářská 4, 128 00 Praha 2\nTel.: +420 224 968 208, Email: adambulance@vfn.cz\n\nAdiktologická poradna ARKA\nHornická poliklinika, Sokolská tř. 2587/81, 702 00 Ostrava\nTel.: 734 377 810, Email: arka@email.cz\n\nOnline addiction counselling:\nWeb: https://poradna.adiktologie.cz/zavislosti/gamblerstvi\nEmail: adambulance@vfn.cz\n\nInformation sites:\nhttps://www.hazardni-hrani.cz/\nhttps://www.neprohraj.se/"
   },
   "playerInfo": {
     "title": "Player Info",

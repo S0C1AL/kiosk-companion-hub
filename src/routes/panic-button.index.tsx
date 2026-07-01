@@ -11,7 +11,7 @@ import { formatPlayerName, type PlayerInfo } from "@/lib/player-types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/panic-button/")({
-  head: () => ({ meta: [{ title: "Self-Exclusion — Casino Kiosk" }] }),
+  head: () => ({ meta: [{ title: "Panic Button — Casino Kiosk" }] }),
   component: PanicPage,
 });
 
@@ -31,6 +31,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
   const [sendMail, setSendMail] = useState(false);
   const [done, setDone] = useState(false);
   const [excluded48, setExcluded48] = useState(false);
+  const hasEmail = Boolean(player.email && player.email.trim().length > 0);
 
   const m48 = useMutation({
     mutationFn: () => excludePlayer48h({ data: { playerId: player.playerId } }),
@@ -106,21 +107,45 @@ function PanicInner({ player }: { player: PlayerInfo }) {
           loading={m48.isPending || mPerm.isPending}
           extra={
             pending === "perm" && (
-              <label className="mt-4 flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 p-4 text-white">
-                <input
-                  type="checkbox"
-                  checked={sendMail}
-                  onChange={(e) => setSendMail(e.target.checked)}
-                  className="size-6 accent-emerald-500"
-                />
-                <span className="text-lg">{t("panic.sendMail")}</span>
-              </label>
+              <div className="mt-4 space-y-2">
+                <div className="rounded-2xl border border-white/15 bg-white/5 p-4 text-white">
+                  <div className="text-sm uppercase tracking-wider text-white/50">
+                    {t("panic.emailLabel")}
+                  </div>
+                  <div className={hasEmail ? "mt-1 text-lg font-medium" : "mt-1 text-lg italic text-white/60"}>
+                    {hasEmail ? player.email : t("panic.noEmail")}
+                  </div>
+                </div>
+                <label
+                  className={cn(
+                    "flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 p-4 text-white",
+                    !hasEmail && "opacity-60",
+                  )}
+                >
+                  <input
+                    type="checkbox"
+                    checked={hasEmail ? sendMail : false}
+                    disabled={!hasEmail}
+                    onChange={(e) => setSendMail(e.target.checked)}
+                    className="size-6 accent-emerald-500"
+                  />
+                  <span className="text-lg">{t("panic.sendMail")}</span>
+                </label>
+                {!hasEmail && (
+                  <p className="px-1 text-sm text-amber-300">
+                    {t("panic.noEmailWarning")}
+                  </p>
+                )}
+              </div>
             )
           }
           onCancel={() => setPending(null)}
           onConfirm={() => {
             if (pending === "48") m48.mutate();
-            else mPerm.mutate();
+            else {
+              if (!hasEmail && sendMail) setSendMail(false);
+              mPerm.mutate();
+            }
           }}
         />
       )}
@@ -130,6 +155,7 @@ function PanicInner({ player }: { player: PlayerInfo }) {
 
 function PlayerSummaryCard({ player }: { player: PlayerInfo }) {
   const { t } = useTranslation();
+  const hasEmail = Boolean(player.email && player.email.trim().length > 0);
   return (
     <div className="rounded-3xl border border-white/10 bg-white/10 p-8">
       <div className="mb-5 text-base uppercase tracking-wider text-white/50">
@@ -141,6 +167,11 @@ function PlayerSummaryCard({ player }: { player: PlayerInfo }) {
           label={t("playerInfo.dob")}
           value={new Date(player.dateOfBirth).toLocaleDateString()}
         />
+        <Field
+          label={t("panic.emailLabel")}
+          value={hasEmail ? (player.email as string) : t("panic.noEmail")}
+          muted={!hasEmail}
+        />
         <Field label="ID" value={String(player.playerId)} />
         <Field label={t("playerInfo.cardLevel")} value={player.cardLevelName} />
       </div>
@@ -148,11 +179,13 @@ function PlayerSummaryCard({ player }: { player: PlayerInfo }) {
   );
 }
 
-function Field({ label, value }: { label: string; value: string }) {
+function Field({ label, value, muted }: { label: string; value: string; muted?: boolean }) {
   return (
     <div className="flex justify-between gap-4 border-b border-white/5 pb-2 last:border-0">
       <span className="text-white/60">{label}</span>
-      <span className="text-right font-medium">{value}</span>
+      <span className={cn("text-right font-medium", muted && "italic text-white/60")}>
+        {value}
+      </span>
     </div>
   );
 }
