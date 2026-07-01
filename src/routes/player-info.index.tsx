@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { KioskShell } from "@/components/kiosk/KioskShell";
 import { CardGate } from "@/components/kiosk/CardGate";
 import { HowToPanel } from "@/components/kiosk/HowToPanel";
-import { getPlayerBalance, getKioskClientConfig } from "@/lib/player.functions";
+import { getPlayerBalance } from "@/lib/player.functions";
 import { useState } from "react";
 import {
   currencyCodeToLabel,
@@ -37,17 +37,9 @@ function PlayerInner({ player }: { player: PlayerInfo }) {
     queryFn: () => getPlayerBalance({ data: { playerId: player.playerId } }),
     staleTime: 15_000,
   });
-  const cfgQuery = useQuery({
-    queryKey: ["kiosk-config"],
-    queryFn: () => getKioskClientConfig(),
-    staleTime: 5 * 60_000,
-  });
   const [imgError, setImgError] = useState(false);
 
-  const levelColor =
-    cfgQuery.data?.levelColors?.[player.cardLevelName] ||
-    player.primaryLevelColour ||
-    "#475569";
+  const levelColor = player.primaryLevelColour || "#475569";
 
   const currency = balanceQuery.data
     ? currencyCodeToLabel(balanceQuery.data.currency)

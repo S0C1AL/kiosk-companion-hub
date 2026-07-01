@@ -24,7 +24,7 @@
     "tiles": {
       "gamePlan": "Herní plán",
       "gamePlanDesc": "Pravidla a popisy her",
-      "panicButton": "Sebevyloučení",
+      "panicButton": "Panic Button",
       "panicButtonDesc": "48 hodin nebo trvale",
       "playerInfo": "Informace o hráči",
       "playerInfoDesc": "Účet a zůstatek",
@@ -56,7 +56,7 @@
     "tooManyTries": "Příliš mnoho pokusů. Vracím se na hlavní obrazovku."
   },
   "panic": {
-    "title": "Sebevyloučení",
+    "title": "Panic Button",
     "summary": "Souhrn hráče",
     "exclude48": "Vyloučení na 48 hodin",
     "exclude48Desc": "Nebudete moci hrát po dobu 48 hodin.",
@@ -70,8 +70,11 @@
     "exclude48Active": "Vyloučení na 48 hodin již bylo odesláno",
     "exclude48Success": "48hodinové vyloučení bylo úspěšně aktivováno.",
     "howTo": "1. Vložte svou kartu do čtečky.\n2. Zadejte své datum narození pro ověření.\n3. Vyberte 48hodinové nebo trvalé vyloučení.\n4. Potvrďte volbu. Personál vás bude kontaktovat v případě potřeby.",
-    "responsibleGamingTitle": "Zodpovědné hraní",
-    "responsibleGaming": "Pokud máte pocit, že se hraní stává problémem, neváhejte vyhledat pomoc.\n\nLinka pomoci: 800 100 200 (zdarma, 24/7)\nwww.hraniezodpovedne.cz\n\nKdykoli se můžete důvěrně obrátit i na náš personál."
+    "noEmail": "E-mail není uveden — přidejte si jej prosím na recepci.",
+    "noEmailWarning": "Nemáte uvedený e-mail. Pro zaslání potvrzení e-mailem si jej prosím doplňte nebo změňte na recepci.",
+    "emailLabel": "E-mail",
+    "responsibleGamingTitle": "Zodpovědné hraní a pomoc",
+    "responsibleGaming": "Hazardní hry se nesmí účastnit osoby mladší 18 let. Účast na hazardní hře může být škodlivá.\n\nNa recepci kasina je možné nastavit si, nebo změnit sebeomezující opatření:\nØ Počet návštěv herního prostoru za 1 kalendářní měsíc\nØ U technické hry možnost nastavení:\n  o maximální výši sázek za 1 kalendářní den,\n  o maximální výši sázek za 1 kalendářní měsíc,\n  o maximální výši čisté prohry za 1 kalendářní den,\n  o maximální výši čisté prohry za 1 kalendářní měsíc,\n  o maximální počet přihlášení do uživatelského konta za 1 kalendářní měsíc,\n  o maximální celkovou dobu přihlášení do uživatelského konta za 1 kalendářní den,\n  o dobu, po kterou nebude umožněno vložit sázku do hazardní hry po odhlášení z uživatelského konta.\n\nØ U živé hry možnost nastavení maximální výše čisté prohry za:\n  a) 1 kalendářní den\n  b) 1 kalendářní měsíc\n\nInstituce zabývající se prevencí a léčbou problémů souvisejících s patologickým hráčstvím:\n\nAdiktologická poradna PREVENT České Budějovice\nFrantiška Ondříčka 2, 370 11 České Budějovice\nTel.: +420 725 708 078, Email: ap@prevent99.cz\n\nKlinika adiktologie 1. LF UK a VFN v Praze\nApolinářská 4, 128 00 Praha 2\nTel.: +420 224 968 208, Email: adambulance@vfn.cz\n\nAdiktologická poradna ARKA\nHornická poliklinika, Sokolská tř. 2587/81, 702 00 Ostrava\nTel.: 734 377 810, Email: arka@email.cz\n\nOnline adiktologická poradna:\nWeb: https://poradna.adiktologie.cz/zavislosti/gamblerstvi\nEmail: adambulance@vfn.cz\n\nInformační weby:\nhttps://www.hazardni-hrani.cz/\nhttps://www.neprohraj.se/"
   },
   "playerInfo": {
     "title": "Informace o hráči",

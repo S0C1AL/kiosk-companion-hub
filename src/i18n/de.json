@@ -24,7 +24,7 @@
     "tiles": {
       "gamePlan": "Spielplan",
       "gamePlanDesc": "Regeln und Spielbeschreibungen",
-      "panicButton": "Selbstsperre",
+      "panicButton": "Panic Button",
       "panicButtonDesc": "48 Stunden oder dauerhaft",
       "playerInfo": "Spielerinfo",
       "playerInfoDesc": "Konto und Guthaben",
@@ -56,7 +56,7 @@
     "tooManyTries": "Zu viele Versuche. Rückkehr zur Startseite."
   },
   "panic": {
-    "title": "Selbstsperre",
+    "title": "Panic Button",
     "summary": "Spielerübersicht",
     "exclude48": "48-Stunden-Sperre",
     "exclude48Desc": "Sie dürfen 48 Stunden lang nicht spielen.",
@@ -70,8 +70,11 @@
     "exclude48Active": "48-Stunden-Sperre wurde bereits angefordert",
     "exclude48Success": "48-Stunden-Sperre erfolgreich aktiviert.",
     "howTo": "1. Legen Sie Ihre Karte auf den Leser.\n2. Geben Sie zur Bestätigung Ihr Geburtsdatum ein.\n3. Wählen Sie 48 Stunden oder dauerhaft.\n4. Bestätigen Sie. Unser Personal kontaktiert Sie bei Bedarf.",
-    "responsibleGamingTitle": "Verantwortungsvolles Spielen",
-    "responsibleGaming": "Wenn Sie das Gefühl haben, dass das Spielen zum Problem wird, holen Sie sich bitte Hilfe.\n\nHilfetelefon: 0800 137 27 00 (kostenlos, 24/7)\nwww.bzga.de\n\nSie können sich jederzeit vertraulich an unser Personal wenden."
+    "noEmail": "Keine E-Mail hinterlegt — bitte an der Rezeption ergänzen.",
+    "noEmailWarning": "Keine E-Mail hinterlegt. Bitte ergänzen oder ändern Sie Ihre E-Mail an der Rezeption, um eine Bestätigung per E-Mail zu erhalten.",
+    "emailLabel": "E-Mail",
+    "responsibleGamingTitle": "Verantwortungsvolles Spielen & Hilfe",
+    "responsibleGaming": "Glücksspiel ist Personen unter 18 Jahren untersagt. Die Teilnahme am Glücksspiel kann schädlich sein.\n\nAn der Rezeption des Casinos können Sie Selbstbeschränkungen festlegen oder ändern:\nØ Anzahl der Besuche des Spielbereichs pro Kalendermonat\nØ Bei technischen Spielen können folgende Limits gesetzt werden:\n  o maximaler Einsatzbetrag pro Kalendertag,\n  o maximaler Einsatzbetrag pro Kalendermonat,\n  o maximaler Nettoverlust pro Kalendertag,\n  o maximaler Nettoverlust pro Kalendermonat,\n  o maximale Anzahl der Anmeldungen im Benutzerkonto pro Kalendermonat,\n  o maximale Gesamtanmeldedauer im Benutzerkonto pro Kalendertag,\n  o Sperrfrist, in der nach der Abmeldung kein neuer Einsatz möglich ist.\n\nØ Bei Live-Spielen kann der maximale Nettoverlust festgelegt werden für:\n  a) 1 Kalendertag\n  b) 1 Kalendermonat\n\nInstitutionen für Prävention und Behandlung von Spielsucht:\n\nAdiktologická poradna PREVENT České Budějovice\nFrantiška Ondříčka 2, 370 11 České Budějovice\nTel.: +420 725 708 078, E-Mail: ap@prevent99.cz\n\nKlinika adiktologie 1. LF UK a VFN v Praze\nApolinářská 4, 128 00 Praha 2\nTel.: +420 224 968 208, E-Mail: adambulance@vfn.cz\n\nAdiktologická poradna ARKA\nHornická poliklinika, Sokolská tř. 2587/81, 702 00 Ostrava\nTel.: 734 377 810, E-Mail: arka@email.cz\n\nOnline-Suchtberatung:\nWeb: https://poradna.adiktologie.cz/zavislosti/gamblerstvi\nE-Mail: adambulance@vfn.cz\n\nInformationsseiten:\nhttps://www.hazardni-hrani.cz/\nhttps://www.neprohraj.se/"
   },
   "playerInfo": {
     "title": "Spielerinfo",
